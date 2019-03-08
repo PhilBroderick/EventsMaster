@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsMaster", "EventsMaster\EventsMaster.csproj", "{69C2AAAB-60E7-41D0-AC40-6322F3AE1258}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventsMaster", "EventsMaster\EventsMaster.csproj", "{69C2AAAB-60E7-41D0-AC40-6322F3AE1258}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsMaster.Api", "EventsMaster.Api\EventsMaster.Api.csproj", "{B97D261B-C8B2-4E41-9F20-6E6A9E72A73B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsMaster.Api.Tests", "EventsMaster.Api.Tests\EventsMaster.Api.Tests.csproj", "{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{69C2AAAB-60E7-41D0-AC40-6322F3AE1258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69C2AAAB-60E7-41D0-AC40-6322F3AE1258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69C2AAAB-60E7-41D0-AC40-6322F3AE1258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B97D261B-C8B2-4E41-9F20-6E6A9E72A73B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B97D261B-C8B2-4E41-9F20-6E6A9E72A73B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B97D261B-C8B2-4E41-9F20-6E6A9E72A73B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B97D261B-C8B2-4E41-9F20-6E6A9E72A73B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
