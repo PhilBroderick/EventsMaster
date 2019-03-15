@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EventsMaster.Api.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,8 @@ namespace EventsMaster.Api
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            DocumentDBRepository<Event>.Initialize();
         }
     }
 }
