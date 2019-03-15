@@ -1,0 +1,16 @@
+<table class="table" *ngIf="events">
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Location</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of events">
+      <td>{{ event.name }}</td>
+      <td>{{ event.category }}</td>
+      <td>{{ event.description }}</td>
+    </tr>
+  </tbody>
+</table>
