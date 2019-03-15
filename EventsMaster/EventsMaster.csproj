@@ -26,10 +26,12 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\event-data\event-data.component.ts" />
+    <None Remove="ClientApp\src\app\models\event.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\event-data\event-data.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\event.model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
