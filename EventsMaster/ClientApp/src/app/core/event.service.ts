@@ -15,6 +15,7 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   getEvents() : Observable<Event[]> {
-    return this.http.get('http://localhost:51404/events')
+    return this.http.get<Array<Event>>('http://localhost:51404/events');
   }
+  
 }

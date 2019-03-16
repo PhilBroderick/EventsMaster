@@ -16,7 +16,7 @@ namespace EventsMaster.Api.Controllers
         public async Task<IHttpActionResult> GetAllEvents()
         {
             var events = await DocumentDBRepository<Event>.GetItemsAsync();
-            return Ok(new { events });
+            return Ok(events);
         }
 
         [HttpGet, Route("{id}/{category}")]
