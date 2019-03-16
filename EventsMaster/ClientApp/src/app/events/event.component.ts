@@ -5,43 +5,19 @@ import { EventService } from "../core/event.service";
 
 @Component({
   selector: 'app-events',
-  templateUrl: './events.component.html'
+  templateUrl: './event.component.html'
 })
 export class EventsComponent implements OnInit {
-  addingEvent = false;
-  deleteButtonSelected = false;
-  events: any = [];
-  selectedEvent: Event;
+  events: Array<Event>
 
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    this.getEvents();
+    this.eventService.getEvents().subscribe(data => {
+      this.events = data;
+      console.log("this.events=" this.events);
+    })
   }
-
-  cancel() {
-    this.addingEvent = false;
-    this.selectedEvent = null;
-  }
-
-  getEvents() {
-    return this.eventService.getEvents().subscribe(events => {
-      this.events = events;
-
-    });
-  }
-
-  enableAddMode() {
-    this.addingEvent = true;
-    this.selectedEvent = new Event();
-  }
-
-  onSelect(event: Event) {
-    if (this.deleteButtonSelected == false) {
-      this.addingEvent = false;
-      this.selectedEvent = event;
-    }
-    this.deleteButtonSelected = false;
-  }
+  
   
 }
