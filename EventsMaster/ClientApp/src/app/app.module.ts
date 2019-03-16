@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { EventDataComponent } from './event-data/event-data.component';
+import { EventsComponent } from './events/event.component';
+import { EventService } from './core/event.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { EventDataComponent } from './event-data/event-data.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    EventDataComponent
+    EventDataComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -28,10 +31,11 @@ import { EventDataComponent } from './event-data/event-data.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'event-data', component: EventDataComponent }
+      { path: 'event-data', component: EventDataComponent },
+      { path: 'events', component: EventsComponent }
     ])
   ],
-  providers: [],
+  providers: [EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

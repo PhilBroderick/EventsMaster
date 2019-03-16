@@ -32,6 +32,11 @@
                 <span class='glyphicon glyphicon-th-list'></span> Event data
               </a>
             </li>
+            <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/events"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-th-list'></span> Events
+              </a>
+            </li>
           </ul>
         </div>
     </div>

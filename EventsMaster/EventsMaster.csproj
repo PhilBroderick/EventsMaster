@@ -36,12 +36,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\Config\AppConfig.ts" />
     <None Remove="ClientApp\src\app\core\event.service.ts" />
     <None Remove="ClientApp\src\app\event-data\event-data.component.ts" />
     <None Remove="ClientApp\src\app\events\event.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\Config\AppConfig.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\core\event.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\event-data\event-data.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\events\event.component.ts" />
