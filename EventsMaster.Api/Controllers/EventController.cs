@@ -13,18 +13,28 @@ namespace EventsMaster.Api.Controllers
     public class EventController : ApiController
     {
         [HttpGet, Route("")]
-        public async Task<IHttpActionResult> GetAllEvents()
+        public async Task<IHttpActionResult> GetAllEventsAsync()
         {
             var events = await DocumentDBRepository<Event>.GetItemsAsync();
             return Ok(events);
         }
 
         [HttpGet, Route("{id}/{category}")]
-        public async Task<IHttpActionResult> GetEventById(string id, string category)
+        public async Task<IHttpActionResult> GetEventByIdAsync(string id, string category)
         {
             var singleEvent = await DocumentDBRepository<Event>.GetItemAsync(id, category);
             return Ok(new { singleEvent });
         }
         
+        [HttpPost, Route("")]
+        public async Task<IHttpActionResult> CreateEventAsync([FromBody] Event singleEvent)
+        {
+            if (ModelState.IsValid)
+            {
+                await DocumentDBRepository<Event>.CreateItemAsync(singleEvent);
+                return Ok(singleEvent);
+            }
+            return null;
+        }
     }
 }

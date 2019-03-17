@@ -16,7 +16,7 @@ namespace EventsMaster.Api
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            EnableCorsAttribute cors = new EnableCorsAttribute("https://localhost:44329", "*", "*");
+            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
 
             config.Routes.MapHttpRoute(
