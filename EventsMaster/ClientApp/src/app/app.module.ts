@@ -9,7 +9,6 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { EventDataComponent } from './event-data/event-data.component';
 import { EventsComponent } from './events/event.component';
 import { EventService } from './core/event.service';
 
@@ -20,7 +19,6 @@ import { EventService } from './core/event.service';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    EventDataComponent,
     EventsComponent
   ],
   imports: [
@@ -31,7 +29,6 @@ import { EventService } from './core/event.service';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'event-data', component: EventDataComponent },
       { path: 'events', component: EventsComponent }
     ])
   ],

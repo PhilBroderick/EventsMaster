@@ -17,5 +17,9 @@ export class EventService {
   getEvents() : Observable<Event[]> {
     return this.http.get<Array<Event>>('http://localhost:51404/events');
   }
-  
+
+
+  createEvent(event: Event) {
+    return this.http.post<Event>('http://localhost:51404/events', event);
+  }
 }
