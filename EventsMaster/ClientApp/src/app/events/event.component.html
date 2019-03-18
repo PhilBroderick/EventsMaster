@@ -13,13 +13,9 @@
     <div *ngIf="selectedEvent">
       <div class="editfields">
         <div>
-          <label>id: </label>
-          <input [(ngModel)]="selectedEvent.uid" placeholder="id" *ngIf="addingEvent" />
-          <label *ngIf="!addingEvent" class="value">{{selectedEvent.uid}}</label>
-        </div>
-        <div>
           <label>name: </label>
-          <input [(ngModel)]="selectedEvent.name" placeholder="name" />
+          <input [(ngModel)]="selectedEvent.name" placeholder="name" *ngIf="addingEvent" />
+          <label *ngIf="!addingEvent" class="value">{{selectedEvent.name}}</label>
         </div>
         <div>
           <label>description: </label>
@@ -28,6 +24,10 @@
         <div>
           <label>category: </label>
           <input [(ngModel)]="selectedEvent.category" placeholder="category" />
+        </div>
+        <div>
+          <label>tickets: </label>
+          <input [(ngModel)]="selectedEvent.tickets" placeholder="tickets" />
         </div>
       </div>
       <button (click)="save()">Save</button>
