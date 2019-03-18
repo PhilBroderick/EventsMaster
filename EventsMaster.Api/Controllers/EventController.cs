@@ -43,17 +43,44 @@ namespace EventsMaster.Api.Controllers
         {
             try
             {
-                var categoryToUpper = category.First().ToString().ToUpper() + category.Substring(1);
+                var categoryToUpper = CategoryToUpper(category);
                 var singleEvent = await DocumentDBRepository<Event>.GetSingleItemAsync(d => d.Id == id && d.Category == categoryToUpper);
                 if (singleEvent == null)
                     return NotFound();
                 await DocumentDBRepository<Event>.DeleteItemAsync(singleEvent.Id, singleEvent.Category);
                 return Ok();
             }
+            catch (Exception ex)
+            {
+                return Content(HttpStatusCode.BadRequest, ex.ToString());
+            }
+        }
+
+        [HttpPut, Route("{id}/{category}")]
+        public async Task<IHttpActionResult> UpdateEventAsync(string id, string category, [FromBody] Event singleEvent)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var categoryToUpper = CategoryToUpper(category);
+                    var updateEvent = await DocumentDBRepository<Event>.GetSingleItemAsync(d => d.Id == id && d.Category == categoryToUpper);
+                    if (updateEvent == null)
+                        return NotFound();
+                    await DocumentDBRepository<Event>.UpdateItemAsync(updateEvent.Id, singleEvent);
+                    return Ok(singleEvent);
+                }
+                return NotFound();
+            }
             catch(Exception ex)
             {
                 return Content(HttpStatusCode.BadRequest, ex.ToString());
             }
+        }
+
+        private string CategoryToUpper(string lowerCategory)
+        {
+            return lowerCategory.First().ToString().ToUpper() + lowerCategory.Substring(1);
         }
     }
 }
