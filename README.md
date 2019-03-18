@@ -5,4 +5,6 @@ Users can search for events close to them or for certain dates and sign up to th
 
 Storage is done through Azure Cosmos DB which uses a DocumentDB with a SQL API to allow querying of data.
 
+Azure published Web API to query and retrieve data: https://eventsmasterapi.azurewebsites.net
+
 All features and enhancements are tracked through a trello board: https://trello.com/b/u7utD5FM/eventsmaster
