@@ -21,4 +21,16 @@ export class EventService {
   createEvent(event: Event) {
     return this.http.post<Event>('https://eventsmasterapi.azurewebsites.net/events', event);
   }
+
+  getEvent(id: string, category: string) {
+    return this.http.get<Event>('https://eventsmasterapi.azurewebsites.net/events?id=' + id + '/' + category);
+  }
+
+  updateEvent(event: Event) {
+    return this.http.put<Event>('https://eventsmasterapi.azurewebsites.net/events/' + event.id + '/' + event.category, event);
+  }
+
+  deleteEvent(event: Event) {
+    return this.http.delete<Event>('https://eventsmasterapi.azurewebsites.net/events/' + event.id + '/' + event.category);
+  }
 }

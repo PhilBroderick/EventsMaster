@@ -11,6 +11,7 @@ export class EventsComponent implements OnInit {
   events: Array<Event>
   addingEvent = false;
   selectedEvent: Event;
+  deleteButtonSelected = false;
 
   constructor(private eventService: EventService) { }
 
@@ -34,7 +35,36 @@ export class EventsComponent implements OnInit {
       this.eventService.createEvent(this.selectedEvent).subscribe(event => {
         this.addingEvent = false;
         this.selectedEvent = null;
+        this.events.push(event);
+      })
+    } else {
+      this.eventService.updateEvent(this.selectedEvent).subscribe(event => {
+        this.addingEvent = false;
+        this.selectedEvent = null;
       })
     }
   }
+
+  deleteEvent(event: Event) {
+    this.deleteButtonSelected = true;
+    let value: boolean;
+    value = confirm("Are you sure you want to delete this event?");
+    if (value != true) {
+      return;
+    }
+    this.eventService.deleteEvent(event).subscribe(res => {
+      this.events = this.events.filter(e => e !== event);
+      if (this.selectedEvent === event) {
+        this.selectedEvent = null;
+      }
+    })
+  }
+
+  onSelect(event: Event) {
+    if (this.deleteButtonSelected == false) {
+      this.addingEvent = false;
+      this.selectedEvent = event;
+    }
+    this.deleteButtonSelected = false;
+  } 
 }
