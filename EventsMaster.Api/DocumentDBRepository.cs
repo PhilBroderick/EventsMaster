@@ -95,7 +95,8 @@ namespace EventsMaster.Api
 
         public static async Task DeleteItemAsync(string id, string category)
         {
-            await _client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, id));
+            await _client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(_databaseId, _collectionId, id), 
+                new RequestOptions { PartitionKey = new PartitionKey(category)});
         }
 
         public static void Initialize()
