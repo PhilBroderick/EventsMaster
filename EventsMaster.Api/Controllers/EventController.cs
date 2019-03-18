@@ -31,6 +31,7 @@ namespace EventsMaster.Api.Controllers
         {
             if (ModelState.IsValid)
             {
+                singleEvent.Id = Guid.NewGuid().ToString();
                 await DocumentDBRepository<Event>.CreateItemAsync(singleEvent);
                 return Ok(singleEvent);
             }
