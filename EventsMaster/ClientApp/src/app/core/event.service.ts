@@ -6,7 +6,6 @@ import { Event } from "../shared/models/event.model";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 
-  const api = 'http://localhost:51404'
 
 @Injectable()
 export class EventService {
@@ -15,11 +14,11 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   getEvents() : Observable<Event[]> {
-    return this.http.get<Array<Event>>('http://localhost:51404/events');
+    return this.http.get<Array<Event>>('https://eventsmasterapi.azurewebsites.net/events');
   }
 
 
   createEvent(event: Event) {
-    return this.http.post<Event>('http://localhost:51404/events', event);
+    return this.http.post<Event>('https://eventsmasterapi.azurewebsites.net/events', event);
   }
 }

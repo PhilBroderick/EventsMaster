@@ -158,6 +158,7 @@
   <ItemGroup>
     <Content Include="appSettings.config" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\EventsMasterAPI - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
