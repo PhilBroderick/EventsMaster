@@ -1,11 +1,12 @@
 <div>
-  <ul class="heroes">
+  <ul class="events">
     <li *ngFor="let event of events" (click)="onSelect(event)" [class.selected]="event === selectedEvent">
-      <button class="delete-button" (click)="deleteEvent(event)">Delete</button>
-      <div class="hero-element">
-        <div class="badge">{{event.id}}</div>
+      <div class="event-element">
+        <div class="id">{{event.id}}</div>
         <div class="name">{{event.name}}</div>
-        <div class="saying">{{event.description}}</div>
+        <div class="description">{{event.description}}</div>
+        <button class="edit-button" (click)="onSelect(event)">Edit</button>
+        <button class="delete-button" (click)="deleteEvent(event)">Delete</button>
       </div>
     </li>
   </ul>
