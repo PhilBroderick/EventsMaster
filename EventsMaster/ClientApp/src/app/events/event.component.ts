@@ -5,7 +5,8 @@ import { EventService } from "../core/event.service";
 
 @Component({
   selector: 'app-events',
-  templateUrl: './event.component.html'
+  templateUrl: './event.component.html',
+  styleUrls: ['./event.component.css']
 })
 export class EventsComponent implements OnInit {
   events: Array<Event>

@@ -1,12 +1,41 @@
 body {
 }
 
-button {
+.delete-button {
   font-size: 14px;
   font-family: Arial;
-  background-color: #eee;
+  color: white;
+  background-color: #e80404;
   border: none;
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.edit-button {
+  font-size: 14px;
+  font-family: Arial;
+  color: white;
+  background-color: #0be00b;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.events {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.events li{
+  list-style: none;
+  width: 33%;
+  margin: 2px 0;
+}
+
+.event-element {
+  background-color: #c7ced8;
+  border-radius: 7px;
 }
