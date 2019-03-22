@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsMaster.Api", "EventsM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsMaster.Api.Tests", "EventsMaster.Api.Tests\EventsMaster.Api.Tests.csproj", "{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsMaster.Auth", "EventsMaster.Auth\EventsMaster.Auth.csproj", "{839D8F43-BF37-4626-AB5F-63EA57E9C6F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839D8F43-BF37-4626-AB5F-63EA57E9C6F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839D8F43-BF37-4626-AB5F-63EA57E9C6F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839D8F43-BF37-4626-AB5F-63EA57E9C6F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839D8F43-BF37-4626-AB5F-63EA57E9C6F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
