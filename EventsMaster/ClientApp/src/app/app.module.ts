@@ -4,12 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { JwtHelper } from 'angular-jwt';
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { EventsComponent } from './events/event.component';
 import { EventService } from './core/event.service';
+import { AuthGuard } from './core/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -26,10 +29,10 @@ import { EventService } from './core/event.service';
     RouterModule.forRoot([
       { path: '', component: EventsComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent }
+      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] }
     ])
   ],
-  providers: [EventService],
+  providers: [EventService, JwtHelper, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
