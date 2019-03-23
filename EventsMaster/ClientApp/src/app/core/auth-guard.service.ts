@@ -1,4 +1,4 @@
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelper } from 'angular-jwt';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
