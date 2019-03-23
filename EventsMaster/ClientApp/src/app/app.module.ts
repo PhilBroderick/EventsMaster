@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { JwtHelper } from 'angular-jwt';
+import { JwtHelper } from 'angular2-jwt';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -13,6 +13,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { EventsComponent } from './events/event.component';
 import { EventService } from './core/event.service';
 import { AuthGuard } from './core/auth-guard.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AuthGuard } from './core/auth-guard.service';
     NavMenuComponent,
     CounterComponent,
     FetchDataComponent,
-    EventsComponent
+    EventsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,7 +31,8 @@ import { AuthGuard } from './core/auth-guard.service';
     RouterModule.forRoot([
       { path: '', component: EventsComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] }
+      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
+      { path: 'login', component: LoginComponent }
     ])
   ],
   providers: [EventService, JwtHelper, AuthGuard],
