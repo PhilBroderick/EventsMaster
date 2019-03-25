@@ -68,8 +68,4 @@ export class EventsComponent implements OnInit {
     }
     this.deleteButtonSelected = false;
   }
-
-  logOut() {
-    localStorage.removeItem("jwt");
-  }
 }

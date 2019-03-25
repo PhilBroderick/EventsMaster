@@ -27,6 +27,11 @@
                 <span class='glyphicon glyphicon-th-list'></span> Login
               </a>
             </li>
+            <li [routerLinkActive]='["link-active"]'>
+              <a (click)='logOut()'>
+                <span class='glyphicon glyphicon-th-list'></span> Logout
+              </a>
+            </li>
           </ul>
         </div>
     </div>
