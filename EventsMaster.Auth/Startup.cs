@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EventsMaster.Api;
+using EventsMaster.Api.Models;
 using EventsMaster.Api.Models.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -56,6 +58,9 @@ namespace EventsMaster.Auth
                 });
 
             services.Configure<CosmosDBSettings>(Configuration.GetSection("CosmosDB"));
+            var config = Configuration.GetSection("CosmosDB").Get<CosmosDBSettings>();
+
+            DocumentDBRepository<Event>.Initialize(config.EndpointUri, config.PrimaryKey, config.DatabaseId, config.CollectionId);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
