@@ -63,12 +63,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EventsMaster.Api\EventsMaster.Api.csproj">
-      <Project>{B97D261B-C8B2-4E41-9F20-6E6A9E72A73B}</Project>
-      <Name>EventsMaster.Api</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

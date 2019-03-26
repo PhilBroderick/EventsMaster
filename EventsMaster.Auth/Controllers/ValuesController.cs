@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventsMaster.Api.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace EventsMaster.Auth.Controllers
 {
@@ -11,8 +13,14 @@ namespace EventsMaster.Auth.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly CosmosDBSettings _dbContext;
+
+        public ValuesController(IOptions<CosmosDBSettings> settings)
+        {
+            _dbContext = settings.Value;
+        }
         // GET api/values
-        [HttpGet, Authorize]
+        [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };

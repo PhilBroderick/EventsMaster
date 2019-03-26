@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EventsMaster.Api;
+using EventsMaster.Api.Models;
+using EventsMaster.Api.Models.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,12 +21,14 @@ namespace EventsMaster.Auth
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            HostingEnvironment = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment HostingEnvironment { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -51,6 +56,11 @@ namespace EventsMaster.Auth
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                     };
                 });
+
+            services.Configure<CosmosDBSettings>(Configuration.GetSection("CosmosDB"));
+            var config = Configuration.GetSection("CosmosDB").Get<CosmosDBSettings>();
+
+            DocumentDBRepository<Event>.Initialize(config.EndpointUri, config.PrimaryKey, config.DatabaseId, config.CollectionId);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

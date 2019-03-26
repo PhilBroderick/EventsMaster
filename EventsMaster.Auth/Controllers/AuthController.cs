@@ -12,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace EventsMaster.Auth.Controllers
 {
-    [Route("api/auth")]
+    [Route("auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
