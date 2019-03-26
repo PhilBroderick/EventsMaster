@@ -13,7 +13,7 @@ using Microsoft.Extensions.Options;
 
 namespace EventsMaster.Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("events")]
     [ApiController]
     public class EventController : ControllerBase
     {
