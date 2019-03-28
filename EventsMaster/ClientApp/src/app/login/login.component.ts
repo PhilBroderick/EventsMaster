@@ -16,7 +16,7 @@ export class LoginComponent {
     let credentials = JSON.stringify(form.value);
 
     //move to login.service.ts at some point
-    this.http.post("https://localhost:44315/api/auth/login", credentials, {
+    this.http.post("https://localhost:44321/auth/login", credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })

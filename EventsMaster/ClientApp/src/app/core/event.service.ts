@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Http, Response } from '@angular/http';
 
 import { Event } from "../shared/models/event.model";
@@ -13,8 +13,14 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents() : Observable<Event[]> {
-    return this.http.get<Array<Event>>('https://eventsmasterapi.azurewebsites.net/events');
+  getEvents(): Observable<Event[]> {
+    let token = localStorage.getItem("jwt");
+    return this.http.get<Array<Event>>('https://localhost:44321/events', {
+      headers: new HttpHeaders({
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json"
+      })
+    });
   }
 
 
