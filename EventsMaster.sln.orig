@@ -5,7 +5,13 @@ VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventsMaster", "EventsMaster\EventsMaster.csproj", "{69C2AAAB-60E7-41D0-AC40-6322F3AE1258}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventsMaster.Api", "EventsMaster.Api\EventsMaster.Api.csproj", "{2ADE231B-E157-49BB-B876-64E622F0AB11}"
+<<<<<<< HEAD
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsMaster.Api", "EventsMaster.Api\EventsMaster.Api.csproj", "{2ADE231B-E157-49BB-B876-64E622F0AB11}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsMaster.Api.Tests", "EventsMaster.Api.Tests\EventsMaster.Api.Tests.csproj", "{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventsMaster.Api", "EventsMaster.Auth\EventsMaster.Api.csproj", "{839D8F43-BF37-4626-AB5F-63EA57E9C6F9}"
+>>>>>>> master
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +23,21 @@ Global
 		{69C2AAAB-60E7-41D0-AC40-6322F3AE1258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69C2AAAB-60E7-41D0-AC40-6322F3AE1258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69C2AAAB-60E7-41D0-AC40-6322F3AE1258}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{2ADE231B-E157-49BB-B876-64E622F0AB11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2ADE231B-E157-49BB-B876-64E622F0AB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ADE231B-E157-49BB-B876-64E622F0AB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ADE231B-E157-49BB-B876-64E622F0AB11}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFF476AC-DF4A-4F6E-97F4-21FA27C8B8D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839D8F43-BF37-4626-AB5F-63EA57E9C6F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839D8F43-BF37-4626-AB5F-63EA57E9C6F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839D8F43-BF37-4626-AB5F-63EA57E9C6F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839D8F43-BF37-4626-AB5F-63EA57E9C6F9}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> master
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

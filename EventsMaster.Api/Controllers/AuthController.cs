@@ -5,12 +5,12 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using EventsMaster.Auth.Models;
+using EventsMaster.Api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
-namespace EventsMaster.Auth.Controllers
+namespace EventsMaster.Api.Controllers
 {
     [Route("auth")]
     [ApiController]
@@ -28,8 +28,8 @@ namespace EventsMaster.Auth.Controllers
                 var signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                 var tokenOptions = new JwtSecurityToken(
-                    issuer: "http://localhost:44315",
-                    audience: "http://localhost:44315",
+                    issuer: "http://localhost:44321",
+                    audience: "http://localhost:44321",
                     claims: new List<Claim>(),
                     expires: DateTime.Now.AddMinutes(5),
                     signingCredentials: signInCredentials

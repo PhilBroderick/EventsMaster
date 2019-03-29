@@ -7,18 +7,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-namespace EventsMaster.Auth.Controllers
+namespace EventsMaster.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly CosmosDBSettings _dbContext;
-
-        public ValuesController(IOptions<CosmosDBSettings> settings)
-        {
-            _dbContext = settings.Value;
-        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()

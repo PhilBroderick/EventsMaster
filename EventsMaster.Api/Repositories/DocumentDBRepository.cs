@@ -14,7 +14,7 @@ namespace EventsMaster.Api
         private static string _databaseId;
         private static string _collectionId;
         private static DocumentClient _client;
-        
+
         public static async Task<T> GetItemAsync(string id, string category)
         {
             try

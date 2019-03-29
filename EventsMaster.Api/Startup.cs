@@ -17,7 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace EventsMaster.Auth
+namespace EventsMaster.Api
 {
     public class Startup
     {
@@ -51,8 +51,8 @@ namespace EventsMaster.Auth
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
 
-                        ValidIssuer = "http://localhost:44315",
-                        ValidAudience = "http://localhost:44315",
+                        ValidIssuer = "http://localhost:44321",
+                        ValidAudience = "http://localhost:44321",
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                     };
                 });

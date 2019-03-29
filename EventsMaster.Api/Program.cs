@@ -9,7 +9,7 @@ using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace EventsMaster.Auth
+namespace EventsMaster.Api
 {
     public class Program
     {

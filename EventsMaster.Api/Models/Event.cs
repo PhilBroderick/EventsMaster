@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
 
-namespace EventsMaster.Api.Models
+namespace EventsMaster.Api
 {
     public class Event
     {

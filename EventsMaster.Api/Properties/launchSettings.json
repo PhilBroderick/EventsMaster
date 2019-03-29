@@ -4,8 +4,8 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:50374",
-      "sslPort": 44315
+      "applicationUrl": "http://localhost:50819",
+      "sslPort": 44321
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "EventsMaster.Auth": {
+    "EventsMaster.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",

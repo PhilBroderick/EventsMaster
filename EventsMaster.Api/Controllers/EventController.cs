@@ -1,33 +1,33 @@
-﻿using EventsMaster.Api.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EventsMaster.Api.Controllers
 {
-    [RoutePrefix("events")]
-    public class EventController : ApiController
+    [Route("events")]
+    [ApiController]
+    public class EventController : ControllerBase
     {
-        [HttpGet, Route("")]
-        public async Task<IHttpActionResult> GetAllEventsAsync()
+        [HttpGet, Route(""), Authorize]
+        public async Task<IActionResult> GetAllEventsAsync()
         {
             var events = await DocumentDBRepository<Event>.GetItemsAsync();
             return Ok(events);
         }
 
         [HttpGet, Route("{id}/{category}")]
-        public async Task<IHttpActionResult> GetEventByIdAsync(string id, string category)
+        public async Task<IActionResult> GetEventByIdAsync(string id, string category)
         {
             var singleEvent = await DocumentDBRepository<Event>.GetItemAsync(id, category);
             return Ok(new { singleEvent });
         }
 
         [HttpPost, Route("")]
-        public async Task<IHttpActionResult> CreateEventAsync([FromBody] Event singleEvent)
+        public async Task<IActionResult> CreateEventAsync([FromBody] Event singleEvent)
         {
             if (ModelState.IsValid)
             {
@@ -39,7 +39,7 @@ namespace EventsMaster.Api.Controllers
         }
 
         [HttpDelete, Route("{id}/{category}")]
-        public async Task<IHttpActionResult> DeleteEventAsync(string id, string category)
+        public async Task<IActionResult> DeleteEventAsync(string id, string category)
         {
             try
             {
@@ -52,12 +52,17 @@ namespace EventsMaster.Api.Controllers
             }
             catch (Exception ex)
             {
-                return Content(HttpStatusCode.BadRequest, ex.ToString());
+                var error = new
+                {
+                    message = ex.ToString(),
+                    status = StatusCodes.Status500InternalServerError
+                };
+                return new ObjectResult(error);
             }
         }
 
         [HttpPut, Route("{id}/{category}")]
-        public async Task<IHttpActionResult> UpdateEventAsync(string id, string category, [FromBody] Event singleEvent)
+        public async Task<IActionResult> UpdateEventAsync(string id, string category, [FromBody] Event singleEvent)
         {
             try
             {
@@ -72,9 +77,14 @@ namespace EventsMaster.Api.Controllers
                 }
                 return NotFound();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return Content(HttpStatusCode.BadRequest, ex.ToString());
+                var error = new
+                {
+                    message = ex.ToString(),
+                    status = StatusCodes.Status500InternalServerError
+                };
+                return new ObjectResult(error);
             }
         }
 
