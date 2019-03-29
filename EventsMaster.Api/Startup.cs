@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using EventsMaster.Api;
 using EventsMaster.Api.Models;
-using EventsMaster.Api.Models.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
