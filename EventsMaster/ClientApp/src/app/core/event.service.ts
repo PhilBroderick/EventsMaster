@@ -15,7 +15,7 @@ export class EventService {
 
   getEvents(): Observable<Event[]> {
     let token = localStorage.getItem("jwt");
-    return this.http.get<Array<Event>>('https://localhost:44321/events', {
+    return this.http.get<Array<Event>>('https://eventsmasterapi.azurewebsites.net/events', {
       headers: new HttpHeaders({
         "Authorization": "Bearer " + token,
         "Content-Type": "application/json"
