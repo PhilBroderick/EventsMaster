@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { Event } from "../shared/models/event.model";
 import { EventService } from "../core/event.service";
+import { EventOverlayService } from "../core/event-overlay.service";
 
 @Component({
   selector: 'app-events',
@@ -14,10 +15,14 @@ export class EventsComponent implements OnInit {
   selectedEvent: Event;
   deleteButtonSelected = false;
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private previewDialog: EventOverlayService) { }
 
   ngOnInit() {
     this.getEvents();
+  }
+
+  showPreview() {
+    this.previewDialog.open();
   }
 
   getEvents() {
