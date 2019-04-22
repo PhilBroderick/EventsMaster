@@ -3,6 +3,7 @@ import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 
 import { EventOverlayComponent } from '../events/event-overlay.component';
+import { EventOverlayRef } from '../events/event-overlay-ref';
 
 interface EventOverlayConfig {
   panelClass?: string;
@@ -27,9 +28,13 @@ export class EventOverlayService {
 
     const overlayRef = this.createOverlay(dialogConfig);
 
+    const dialogRef = new EventOverlayRef(overlayRef);
+
     const eventPreviewPortal = new ComponentPortal(EventOverlayComponent);
 
     overlayRef.attach(eventPreviewPortal);
+
+    return dialogRef;
   }
 
   private getOverlayConfig(config: EventOverlayConfig): OverlayConfig {

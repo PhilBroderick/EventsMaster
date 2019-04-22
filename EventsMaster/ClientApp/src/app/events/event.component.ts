@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { Event } from "../shared/models/event.model";
 import { EventService } from "../core/event.service";
 import { EventOverlayService } from "../core/event-overlay.service";
+import { EventOverlayRef } from "./event-overlay-ref";
 
 @Component({
   selector: 'app-events',
@@ -22,7 +23,12 @@ export class EventsComponent implements OnInit {
   }
 
   showPreview() {
-    this.previewDialog.open();
+
+    let dialogRef: EventOverlayRef = this.previewDialog.open();
+
+    setTimeout(() => {
+      dialogRef.close();
+    }, 2000);
   }
 
   getEvents() {
