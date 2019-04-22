@@ -7,6 +7,9 @@ var EventOverlayRef = /** @class */ (function () {
     EventOverlayRef.prototype.close = function () {
         this.overlayRef.dispose();
     };
+    EventOverlayRef.prototype.console = function () {
+        alert("hello");
+    };
     return EventOverlayRef;
 }());
 exports.EventOverlayRef = EventOverlayRef;

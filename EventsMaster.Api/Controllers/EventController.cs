@@ -12,7 +12,7 @@ namespace EventsMaster.Api.Controllers
     [ApiController]
     public class EventController : ControllerBase
     {
-        [HttpGet, Route(""), Authorize]
+        [HttpGet, Route("")]
         public async Task<IActionResult> GetAllEventsAsync()
         {
             var events = await DocumentDBRepository<Event>.GetItemsAsync();

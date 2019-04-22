@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 
@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
   selector: 'login',
   templateUrl: './login.component.html'
 })
+
+@Injectable()
 export class LoginComponent {
   invalidLogin: boolean;
 

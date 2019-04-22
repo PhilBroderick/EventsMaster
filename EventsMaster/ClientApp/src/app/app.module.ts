@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule, MatListModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { JwtHelper } from 'angular2-jwt';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -38,6 +39,7 @@ import { EventOverlayService } from './core/event-overlay.service';
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: EventsComponent, pathMatch: 'full'},
       { path: 'counter', component: CounterComponent },
