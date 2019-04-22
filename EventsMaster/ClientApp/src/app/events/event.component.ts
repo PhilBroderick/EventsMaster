@@ -25,10 +25,7 @@ export class EventsComponent implements OnInit {
   showPreview() {
 
     let dialogRef: EventOverlayRef = this.previewDialog.open();
-
-    setTimeout(() => {
-      dialogRef.close();
-    }, 2000);
+    
   }
 
   getEvents() {

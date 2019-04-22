@@ -34,6 +34,8 @@ export class EventOverlayService {
 
     overlayRef.attach(eventPreviewPortal);
 
+    overlayRef.backdropClick().subscribe(_ => dialogRef.close());
+
     return dialogRef;
   }
 
