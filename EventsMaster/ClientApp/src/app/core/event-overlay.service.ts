@@ -1,26 +1,36 @@
-import { Injectable } from '@angular/core';
-import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
+import { Injectable, Inject, OnInit, Injector, ComponentRef } from '@angular/core';
+import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 
 import { EventOverlayComponent } from '../events/event-overlay.component';
 import { EventOverlayRef } from '../events/event-overlay-ref';
+import { EVENT_DIALOG_DATA } from '../events/event-overlay.tokens';
+
+export interface Event {
+  name: string;
+  category: string;
+  description: string;
+  tickets: string;
+}
 
 interface EventOverlayConfig {
   panelClass?: string;
   hasBackdrop?: boolean;
   backdropClass?: string;
+  event?: Event;
 }
 
 const DEFAULT_CONFIG: EventOverlayConfig = {
   hasBackdrop: true,
   backdropClass: 'dark-backdrop',
-  panelClass: 'tm-event-preview-panel'
+  panelClass: 'tm-event-preview-panel',
+  event: null
 }
 
 @Injectable()
 export class EventOverlayService {
 
-  constructor(private overlay: Overlay) { }
+  constructor(private injector: Injector, private overlay: Overlay) { }
 
   open(config: EventOverlayConfig = {}) {
 
@@ -30,9 +40,7 @@ export class EventOverlayService {
 
     const dialogRef = new EventOverlayRef(overlayRef);
 
-    const eventPreviewPortal = new ComponentPortal(EventOverlayComponent);
-
-    overlayRef.attach(eventPreviewPortal);
+    const overlayComponent = this.attachDialogContainer(overlayRef, dialogConfig, dialogRef);
 
     overlayRef.backdropClick().subscribe(_ => dialogRef.close());
 
@@ -60,5 +68,23 @@ export class EventOverlayService {
     const overlayConfig = this.getOverlayConfig(config);
 
     return this.overlay.create(overlayConfig);
+  }
+
+  private attachDialogContainer(overlayRef: OverlayRef, config: EventOverlayConfig, dialogRef: EventOverlayRef) {
+    const injector = this.createInjector(config, dialogRef);
+
+    const containerPortal = new ComponentPortal(EventOverlayComponent, null, injector);
+    const containerRef: ComponentRef<EventOverlayComponent> = overlayRef.attach(containerPortal);
+
+    return containerRef.instance;
+  }
+  
+  private createInjector(config: EventOverlayConfig, dialogRef: EventOverlayRef): PortalInjector {
+    const injectionTokens = new WeakMap();
+
+    injectionTokens.set(EventOverlayRef, dialogRef);
+    injectionTokens.set(EVENT_DIALOG_DATA, config.event);
+
+    return new PortalInjector(this.injector, injectionTokens);
   }
 }

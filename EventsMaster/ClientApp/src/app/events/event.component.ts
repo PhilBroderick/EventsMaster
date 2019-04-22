@@ -22,9 +22,11 @@ export class EventsComponent implements OnInit {
     this.getEvents();
   }
 
-  showPreview() {
+  showPreview(event) {
 
-    let dialogRef: EventOverlayRef = this.previewDialog.open();
+    let dialogRef: EventOverlayRef = this.previewDialog.open({
+      event: event
+    });
     
   }
 
