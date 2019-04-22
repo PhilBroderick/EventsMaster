@@ -13,6 +13,7 @@ const ESCAPE = 27;
     <div class="overlay-content">
       <p>{{event.name}}</p>
       <p>{{event.description}}</p>
+      <button (click)="console()">Book tickets</button>
     </div>
 `,
   styles: [`
@@ -38,5 +39,9 @@ export class EventOverlayComponent {
 
   constructor(
     public dialogRef: EventOverlayRef,
-    @Inject(EVENT_DIALOG_DATA) public event: any) { }  
+    @Inject(EVENT_DIALOG_DATA) public event: any) { }
+
+  console() {
+    this.dialogRef.console();
+  }
 }

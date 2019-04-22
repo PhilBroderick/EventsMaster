@@ -7,4 +7,8 @@ export class EventOverlayRef {
   close(): void {
     this.overlayRef.dispose();
   }
+
+  console(): void {
+    alert("hello");
+  }
 }
