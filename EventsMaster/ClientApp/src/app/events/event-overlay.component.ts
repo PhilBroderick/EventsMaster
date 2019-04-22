@@ -3,6 +3,7 @@ import { trigger, state, style, transition, animate, AnimationEvent, group, quer
 
 import { EVENT_DIALOG_DATA } from "./event-overlay.tokens";
 import { EventOverlayRef } from './event-overlay-ref';
+import { LoginComponent } from '../login/login.component';
 
 const ANIMATION_TIMINGS = '400ms cubic-bezier(0.25, 0.8, 0.25, 1)';
 const ESCAPE = 27;
@@ -13,7 +14,7 @@ const ESCAPE = 27;
     <div class="overlay-content">
       <p>{{event.name}}</p>
       <p>{{event.description}}</p>
-      <button (click)="console()">Book tickets</button>
+      <button *ngIf="loginService.invalidLogin" (click)="console()">Book tickets</button>
     </div>
 `,
   styles: [`
@@ -39,6 +40,7 @@ export class EventOverlayComponent {
 
   constructor(
     public dialogRef: EventOverlayRef,
+    public loginService: LoginComponent,
     @Inject(EVENT_DIALOG_DATA) public event: any) { }
 
   console() {
