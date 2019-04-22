@@ -1,8 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
+
+import { EVENT_DIALOG_DATA } from "./event-overlay.tokens";
+import { EventOverlayRef } from './event-overlay-ref';
 
 @Component({
   selector: 'event-overlay',
-  template: `<h1>Hello World!</h1>`,
+  template: `
+    <div class="overlay-content">
+      <p>event.name</p>
+    </div>
+`,
   styles: [`
     :host {
       display: block;
@@ -16,4 +23,10 @@ import { Component, Input } from '@angular/core';
   `]
 })
 
-export class EventOverlayComponent { }
+export class EventOverlayComponent {
+
+  constructor(
+    public dialogRef: EventOverlayRef,
+    @Inject(EVENT_DIALOG_DATA) public event: any) { }
+  
+}
