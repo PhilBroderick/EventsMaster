@@ -5,6 +5,7 @@ import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { EventOverlayComponent } from '../events/event-overlay.component';
 import { EventOverlayRef } from '../events/event-overlay-ref';
 import { EVENT_DIALOG_DATA } from '../events/event-overlay.tokens';
+import { WeakMap } from 'core-js';
 
 export interface Event {
   name: string;
