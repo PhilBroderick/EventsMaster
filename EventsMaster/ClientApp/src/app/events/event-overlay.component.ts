@@ -7,7 +7,8 @@ import { EventOverlayRef } from './event-overlay-ref';
   selector: 'event-overlay',
   template: `
     <div class="overlay-content">
-      <p>event.name</p>
+      <p>{{event.name}}</p>
+      <p>{{event.description}}</p>
     </div>
 `,
   styles: [`
@@ -27,6 +28,5 @@ export class EventOverlayComponent {
 
   constructor(
     public dialogRef: EventOverlayRef,
-    @Inject(EVENT_DIALOG_DATA) public event: any) { }
-  
+    @Inject(EVENT_DIALOG_DATA) public event: any) { }  
 }
