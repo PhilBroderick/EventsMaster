@@ -6,15 +6,14 @@ import { NgForm } from '@angular/forms';
 @Injectable()
 export class LoginService {
 
-  invalidLogin: boolean;
+  invalidLogin = true;
 
   constructor(private router: Router, private http: HttpClient) { }
 
   login(form: NgForm) {
 
     let credentials = JSON.stringify(form.value);
-
-    //move to login.service.ts at some point
+    
     this.http.post("https://eventsmasterapi.azurewebsites.net/auth/login", credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
