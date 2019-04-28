@@ -14,7 +14,7 @@ const ESCAPE = 27;
     <div class="overlay-content">
       <p>{{event.name}}</p>
       <p>{{event.description}}</p>
-      <button *ngIf="loginService.invalidLogin" (click)="console()">Book tickets</button>
+      <button (click)="console()">Book tickets</button>
     </div>
 `,
   styles: [`
@@ -40,7 +40,6 @@ export class EventOverlayComponent {
 
   constructor(
     public dialogRef: EventOverlayRef,
-    public loginService: LoginComponent,
     @Inject(EVENT_DIALOG_DATA) public event: any) { }
 
   console() {
