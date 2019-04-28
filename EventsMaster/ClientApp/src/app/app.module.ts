@@ -19,6 +19,7 @@ import { AuthGuard } from './core/auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { EventOverlayComponent } from './events/event-overlay.component';
 import { EventOverlayService } from './core/event-overlay.service';
+import { LoginService } from './core/login.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { EventOverlayService } from './core/event-overlay.service';
       { path: 'login', component: LoginComponent }
     ])
   ],
-  providers: [EventService, JwtHelper, AuthGuard, EventOverlayService],
+  providers: [EventService, JwtHelper, AuthGuard, EventOverlayService, LoginService],
   bootstrap: [AppComponent],
   entryComponents: [EventOverlayComponent]
 })
