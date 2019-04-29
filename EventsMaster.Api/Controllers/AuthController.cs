@@ -44,7 +44,7 @@ namespace EventsMaster.Api.Controllers
 
         private bool userIsValid(AppUser user)
         {
-            return false;   
+             
         }
     }
 }
