@@ -22,7 +22,7 @@ namespace EventsMaster.Api.Controllers
             if (user == null)
                 return BadRequest("Invalid client request");
 
-            if (user.UserName == "philbroderick" && user.Password == "Pa$$w0rd!!")
+            if (userIsValid(user))
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -40,6 +40,11 @@ namespace EventsMaster.Api.Controllers
             }
             else
                 return Unauthorized();
+        }
+
+        private bool userIsValid(AppUser user)
+        {
+             
         }
     }
 }

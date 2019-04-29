@@ -261,3 +261,4 @@ paket-files/
 __pycache__/
 *.pyc
 /EventsMaster.Api/appSettings.config
+/EventsMaster.DAL/app.config
