@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace EventsMaster.DAL.DAL
 {
@@ -14,7 +15,13 @@ namespace EventsMaster.DAL.DAL
         }
         public bool CheckUserIsValid(User user)
         {
-            throw new NotImplementedException();
+            var userExists = _dbContext.User.Where(u => u.Username == user.Username).Single();
+
+            if(userExists != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

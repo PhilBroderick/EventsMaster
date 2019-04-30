@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using EventsMaster.Api.Models;
+using EventsMaster.DAL.DAL;
+using EventsMaster.DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -16,6 +19,12 @@ namespace EventsMaster.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        UserDAL _userDAL;
+        public AuthController()
+        {
+            _userDAL = new UserDAL();
+        }
+
         [HttpPost, Route("login")]
         public IActionResult Login([FromBody]AppUser user)
         {
@@ -44,7 +53,13 @@ namespace EventsMaster.Api.Controllers
 
         private bool userIsValid(AppUser user)
         {
-             
+            var newUser = new User
+            {
+                Username = "philbroderick",
+                Password = "Pa$$w0rd!!"
+            };
+
+            return _userDAL.CheckUserIsValid(newUser);
         }
     }
 }
