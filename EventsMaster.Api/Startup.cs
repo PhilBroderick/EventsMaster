@@ -60,7 +60,7 @@ namespace EventsMaster.Api
             var config = Configuration.GetSection("CosmosDB").Get<CosmosDBSettings>();
 
             DocumentDBRepository<Event>.Initialize(config.EndpointUri, config.PrimaryKey, config.DatabaseId, config.CollectionId);
-
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

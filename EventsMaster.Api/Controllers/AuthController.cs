@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EventsMaster.Api.Models;
 using EventsMaster.DAL.DAL;
+using EventsMaster.DAL.Interfaces;
 using EventsMaster.DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -51,15 +52,9 @@ namespace EventsMaster.Api.Controllers
                 return Unauthorized();
         }
 
-        private bool userIsValid(AppUser user)
+        private bool userIsValid(IUser user)
         {
-            var newUser = new User
-            {
-                Username = "philbroderick",
-                Password = "Pa$$w0rd!!"
-            };
-
-            return _userDAL.CheckUserIsValid(newUser);
+            return _userDAL.CheckUserIsValid(user);
         }
     }
 }

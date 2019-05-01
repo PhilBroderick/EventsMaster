@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using EventsMaster.DAL.Interfaces;
 
 namespace EventsMaster.DAL.DAL
 {
@@ -13,9 +14,9 @@ namespace EventsMaster.DAL.DAL
         {
             _dbContext = new EventsMasterAuthContext();
         }
-        public bool CheckUserIsValid(User user)
+        public bool CheckUserIsValid(IUser user)
         {
-            var userExists = _dbContext.User.Where(u => u.Username == user.Username).Single();
+            var userExists = _dbContext.User.Where(u => u.Username == user.Username && u.Password == user.Password).Single();
 
             if(userExists != null)
             {
@@ -23,5 +24,6 @@ namespace EventsMaster.DAL.DAL
             }
             return false;
         }
+        
     }
 }
