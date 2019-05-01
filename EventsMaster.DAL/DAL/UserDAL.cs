@@ -16,7 +16,7 @@ namespace EventsMaster.DAL.DAL
         }
         public bool CheckUserIsValid(IUser user)
         {
-            var userExists = _dbContext.User.Where(u => u.Username == user.Username).Single();
+            var userExists = _dbContext.User.Where(u => u.Username == user.Username && u.Password == user.Password).Single();
 
             if(userExists != null)
             {
@@ -24,5 +24,6 @@ namespace EventsMaster.DAL.DAL
             }
             return false;
         }
+        
     }
 }
