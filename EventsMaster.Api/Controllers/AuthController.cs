@@ -6,8 +6,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using EventsMaster.Api.Models;
+using EventsMaster.Api.Models.DomainModels;
 using EventsMaster.DAL.DAL;
+using EventsMaster.DAL.Interfaces;
 using EventsMaster.DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +23,11 @@ namespace EventsMaster.Api.Controllers
     public class AuthController : ControllerBase
     {
         UserDAL _userDAL;
-        public AuthController()
+        private readonly IMapper _mapper;
+        public AuthController(IMapper mapper)
         {
             _userDAL = new UserDAL();
+            _mapper = mapper;
         }
 
         [HttpPost, Route("login")]
@@ -51,15 +56,15 @@ namespace EventsMaster.Api.Controllers
                 return Unauthorized();
         }
 
-        private bool userIsValid(AppUser user)
+        private bool userIsValid(IUser user)
         {
-            var newUser = new User
-            {
-                Username = "philbroderick",
-                Password = "Pa$$w0rd!!"
-            };
+            //var newUser = new User
+            //{
+            //    Username = "philbroderick",
+            //    Password = "Pa$$w0rd!!"
+            //};
 
-            return _userDAL.CheckUserIsValid(newUser);
+            return _userDAL.CheckUserIsValid(user);
         }
     }
 }
