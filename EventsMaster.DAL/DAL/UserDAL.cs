@@ -24,6 +24,15 @@ namespace EventsMaster.DAL.DAL
             }
             return false;
         }
-        
+
+        public bool CheckUsernameIsValid(IUsername username)
+        {
+            var userExists = _dbContext.User.Where(u => u.Username == username.Username).Single();
+
+            if (userExists == null)
+                return true;
+
+            return false;
+        }
     }
 }

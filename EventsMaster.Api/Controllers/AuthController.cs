@@ -29,7 +29,7 @@ namespace EventsMaster.Api.Controllers
         [HttpPost, Route("login")]
         public IActionResult Login([FromBody]AppUser user)
         {
-            if (user == null)
+            if (user == null || !ModelState.IsValid)
                 return BadRequest("Invalid client request");
 
             if (userIsValid(user))
@@ -50,6 +50,25 @@ namespace EventsMaster.Api.Controllers
             }
             else
                 return Unauthorized();
+        }
+
+        [HttpPost, Route("checkusername")]
+        public IActionResult CheckUserNameExists([FromBody] UsernameModel username)
+        {
+            if (username == null)
+                return BadRequest("Invalid client request");
+
+            if (usernameIsValid(username))
+            {
+                return Ok();
+            }
+            else
+                return BadRequest("Username exists");
+        }
+
+        private bool usernameIsValid(UsernameModel username)
+        {
+            return _userDAL.CheckUsernameIsValid(username);
         }
 
         private bool userIsValid(IUser user)
