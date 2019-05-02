@@ -12,6 +12,7 @@ using EventsMaster.DAL.Interfaces;
 using EventsMaster.DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace EventsMaster.Api.Controllers
@@ -21,15 +22,19 @@ namespace EventsMaster.Api.Controllers
     public class AuthController : ControllerBase
     {
         UserDAL _userDAL;
-        public AuthController()
+        private string _connStr;
+        IConfiguration _configuration = null;
+        public AuthController(IConfiguration config)
         {
-            _userDAL = new UserDAL();
+            _configuration = config;
+            _connStr = _configuration.GetValue<string>("AppSettings:AuthDatabase");
+            _userDAL = new UserDAL(_connStr);
         }
 
         [HttpPost, Route("login")]
         public IActionResult Login([FromBody]AppUser user)
         {
-            if (user == null)
+            if (user == null || !ModelState.IsValid)
                 return BadRequest("Invalid client request");
 
             if (userIsValid(user))
@@ -50,6 +55,25 @@ namespace EventsMaster.Api.Controllers
             }
             else
                 return Unauthorized();
+        }
+
+        [HttpPost, Route("checkusername")]
+        public IActionResult CheckUserNameExists([FromBody] UsernameModel username)
+        {
+            if (username == null)
+                return BadRequest("Invalid client request");
+
+            if (usernameIsValid(username))
+            {
+                return Ok();
+            }
+            else
+                return BadRequest("Username exists");
+        }
+
+        private bool usernameIsValid(UsernameModel username)
+        {
+            return _userDAL.CheckUsernameIsValid(username);
         }
 
         private bool userIsValid(IUser user)

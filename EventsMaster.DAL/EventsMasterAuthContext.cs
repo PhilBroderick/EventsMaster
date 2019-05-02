@@ -7,8 +7,14 @@ namespace EventsMaster.DAL.Models
 {
     public partial class EventsMasterAuthContext : DbContext
     {
+        private string _connectionString;
         public EventsMasterAuthContext()
         {
+        }
+
+        public EventsMasterAuthContext(string connStr)
+        {
+            _connectionString = connStr;
         }
 
         public EventsMasterAuthContext(DbContextOptions<EventsMasterAuthContext> options)
@@ -22,7 +28,7 @@ namespace EventsMaster.DAL.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["AuthDatabase"].ConnectionString);
+                optionsBuilder.UseSqlServer(_connectionString);
             }
         }
 
