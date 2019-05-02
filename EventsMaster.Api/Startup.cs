@@ -20,9 +20,14 @@ namespace EventsMaster.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment env)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder();
+            builder.SetBasePath(env.ContentRootPath);
+            builder.AddJsonFile("appsettings.json");
+            builder.AddJsonFile("authdatabase.json");
+
+            Configuration = builder.Build();
             HostingEnvironment = env;
         }
 
@@ -55,6 +60,8 @@ namespace EventsMaster.Api
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                     };
                 });
+
+            services.AddSingleton(Configuration);
 
             services.Configure<CosmosDBSettings>(Configuration.GetSection("CosmosDB"));
             var config = Configuration.GetSection("CosmosDB").Get<CosmosDBSettings>();

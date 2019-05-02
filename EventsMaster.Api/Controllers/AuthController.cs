@@ -12,6 +12,7 @@ using EventsMaster.DAL.Interfaces;
 using EventsMaster.DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace EventsMaster.Api.Controllers
@@ -21,9 +22,13 @@ namespace EventsMaster.Api.Controllers
     public class AuthController : ControllerBase
     {
         UserDAL _userDAL;
-        public AuthController()
+        private string _connStr;
+        IConfiguration _configuration = null;
+        public AuthController(IConfiguration config)
         {
-            _userDAL = new UserDAL();
+            _configuration = config;
+            _connStr = _configuration.GetValue<string>("AppSettings:AuthDatabase");
+            _userDAL = new UserDAL(_connStr);
         }
 
         [HttpPost, Route("login")]
