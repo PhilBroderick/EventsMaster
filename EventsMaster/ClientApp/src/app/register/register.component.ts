@@ -11,17 +11,7 @@ import * as $ from 'jquery';
 export class RegisterComponent {
 
   constructor(private registerService: RegisterService) { }
-
-  ngOnInit() {
-    $(document).ready(function () {
-      $('#username').focusout(function () {
-      });
-
-      $('#username').focusin(function () {
-      })
-    })
-  }
-
+  
   register(form: NgForm) {
     this.registerService.register(form);
   }
