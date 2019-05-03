@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { EventOverlayComponent } from './events/event-overlay.component';
 import { EventOverlayService } from './core/event-overlay.service';
 import { LoginService } from './core/login.service';
+import { RegisterComponent } from './register/register.component';
+import { RegisterService } from './core/register.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { LoginService } from './core/login.service';
     FetchDataComponent,
     EventsComponent,
     EventOverlayComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,10 +48,11 @@ import { LoginService } from './core/login.service';
       { path: '', component: EventsComponent, pathMatch: 'full'},
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
     ])
   ],
-  providers: [EventService, JwtHelper, AuthGuard, EventOverlayService, LoginService],
+  providers: [EventService, JwtHelper, AuthGuard, EventOverlayService, LoginService, RegisterService],
   bootstrap: [AppComponent],
   entryComponents: [EventOverlayComponent]
 })

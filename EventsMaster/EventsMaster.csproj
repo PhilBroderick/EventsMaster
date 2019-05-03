@@ -42,11 +42,13 @@
     <None Remove="ClientApp\src\app\core\event-overlay.service.ts" />
     <None Remove="ClientApp\src\app\core\event.service.ts" />
     <None Remove="ClientApp\src\app\core\login.service.ts" />
+    <None Remove="ClientApp\src\app\core\register.service.ts" />
     <None Remove="ClientApp\src\app\events\event-overlay-ref.ts" />
     <None Remove="ClientApp\src\app\events\event-overlay.component.ts" />
     <None Remove="ClientApp\src\app\events\event-overlay.tokens.ts" />
     <None Remove="ClientApp\src\app\events\event.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
+    <None Remove="ClientApp\src\app\register\register.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,11 +57,13 @@
     <TypeScriptCompile Include="ClientApp\src\app\core\event-overlay.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\core\event.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\core\login.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\core\register.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\events\event-overlay-ref.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\events\event-overlay.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\events\event-overlay.tokens.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\events\event.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\register\register.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
