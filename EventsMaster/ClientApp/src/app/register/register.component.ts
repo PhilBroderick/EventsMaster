@@ -12,7 +12,6 @@ export class RegisterComponent {
   constructor(private registerService: RegisterService) { }
 
   checkUsernameIsValid(form: NgForm) {
-    console.log("submit button");
     this.registerService.checkUsernameIsValid(form);
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
-
+import * as $ from 'jquery';
 
 @Injectable()
 export class RegisterService {
@@ -23,6 +23,7 @@ export class RegisterService {
       console.log("success")
       }, err => {
         console.log("error")
+        $('input').css("border", "2px solid red");
         this.invalidUsername = true;
     });
   }
