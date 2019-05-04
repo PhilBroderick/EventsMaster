@@ -34,10 +34,13 @@ namespace EventsMaster.DAL.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
+                    .HasMaxLength(128)
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.Created).HasColumnType("datetime");
