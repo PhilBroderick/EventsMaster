@@ -37,5 +37,29 @@ namespace EventsMaster.DAL.DAL
 
             return false;
         }
+
+        public bool CreateNewUser(IUser user)
+        {
+            user.Created = DateTime.Now;
+            user.LastLoggedIn = DateTime.Now;
+
+            var userDALModel = new User
+            {
+                Username = user.Username,
+                Password = user.Password,
+                Created = user.Created,
+                LastLoggedIn = user.LastLoggedIn
+            };
+
+            CreateModel(userDALModel);
+
+            return true;
+        }
+
+        private void CreateModel(User user)
+        {
+            _dbContext.User.Add(user);
+            _dbContext.SaveChanges();
+        }
     }
 }

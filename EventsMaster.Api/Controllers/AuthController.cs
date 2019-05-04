@@ -71,6 +71,31 @@ namespace EventsMaster.Api.Controllers
                 return BadRequest("Username exists");
         }
 
+        [HttpPost, Route("register")]
+        public IActionResult Register([FromBody] AppUser user)
+        {
+            if(user == null || !ModelState.IsValid)
+                return BadRequest("Invalid client request");
+
+            if (createUser(user))
+            {
+                var token = getUserToken(user);
+                return Ok(new { Token = token });
+            }
+            return BadRequest("Error occured");
+                
+        }
+
+        private bool createUser(AppUser user)
+        {
+            return _userDAL.CreateNewUser(user);
+        }
+
+        private string getUserToken(AppUser user)
+        {
+            throw new NotImplementedException();
+        }
+
         private bool usernameIsValid(UsernameModel username)
         {
             return _userDAL.CheckUsernameIsValid(username);
