@@ -24,13 +24,16 @@ export class RegisterService {
       let credentials = JSON.stringify(form.value);
       console.log(credentials);
 
-      this.http.post("https://eventsmasterapi.azurewebsites.net/auth/checkusername", credentials, {
+      this.http.post("https://eventsmasterapi.azurewebsites.net/auth/register", credentials, {
         headers: new HttpHeaders({
           "Content-Type": "application/json"
         })
       }).subscribe(response => {
         console.log("success")
-        $('input').css("border", "");
+        let token = (<any>response).token;
+        localStorage.setItem("jwt", token);
+        this.invalidUsername = false;
+        this.router.navigate["/"];
       }, err => {
         console.log("error")
         $('input').css("border", "2px solid red");
