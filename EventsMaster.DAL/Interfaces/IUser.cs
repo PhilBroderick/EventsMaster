@@ -8,5 +8,7 @@ namespace EventsMaster.DAL.Interfaces
     {
         string Username { get; }
         string Password { get; set; }
+        DateTime? Created { get; set; }
+        DateTime? LastLoggedIn { get; set; }
     }
 }

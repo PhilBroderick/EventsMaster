@@ -39,18 +39,7 @@ namespace EventsMaster.Api.Controllers
 
             if (userIsValid(user))
             {
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
-                var signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-
-                var tokenOptions = new JwtSecurityToken(
-                    issuer: "http://localhost:44321",
-                    audience: "http://localhost:44321",
-                    claims: new List<Claim>(),
-                    expires: DateTime.Now.AddMinutes(5),
-                    signingCredentials: signInCredentials
-                );
-
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                var tokenString = getUserToken();
                 return Ok(new { Token = tokenString });
             }
             else
@@ -69,6 +58,42 @@ namespace EventsMaster.Api.Controllers
             }
             else
                 return BadRequest("Username exists");
+        }
+
+        [HttpPost, Route("register")]
+        public IActionResult Register([FromBody] AppUser user)
+        {
+            if(user == null || !ModelState.IsValid)
+                return BadRequest("Invalid client request");
+
+            if (createUser(user))
+            {
+                var token = getUserToken();
+                return Ok(new { Token = token });
+            }
+            return BadRequest("Error occured");
+                
+        }
+
+        private bool createUser(AppUser user)
+        {
+            return _userDAL.CreateNewUser(user);
+        }
+
+        private string getUserToken()
+        {
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+            var signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+            var tokenOptions = new JwtSecurityToken(
+                issuer: "http://localhost:44321",
+                audience: "http://localhost:44321",
+                claims: new List<Claim>(),
+                expires: DateTime.Now.AddMinutes(5),
+                signingCredentials: signInCredentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
         }
 
         private bool usernameIsValid(UsernameModel username)
