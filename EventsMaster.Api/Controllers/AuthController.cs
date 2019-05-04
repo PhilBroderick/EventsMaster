@@ -39,18 +39,7 @@ namespace EventsMaster.Api.Controllers
 
             if (userIsValid(user))
             {
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
-                var signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-
-                var tokenOptions = new JwtSecurityToken(
-                    issuer: "http://localhost:44321",
-                    audience: "http://localhost:44321",
-                    claims: new List<Claim>(),
-                    expires: DateTime.Now.AddMinutes(5),
-                    signingCredentials: signInCredentials
-                );
-
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                var tokenString = getUserToken();
                 return Ok(new { Token = tokenString });
             }
             else
@@ -79,7 +68,7 @@ namespace EventsMaster.Api.Controllers
 
             if (createUser(user))
             {
-                var token = getUserToken(user);
+                var token = getUserToken();
                 return Ok(new { Token = token });
             }
             return BadRequest("Error occured");
@@ -91,9 +80,20 @@ namespace EventsMaster.Api.Controllers
             return _userDAL.CreateNewUser(user);
         }
 
-        private string getUserToken(AppUser user)
+        private string getUserToken()
         {
-            throw new NotImplementedException();
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+            var signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+            var tokenOptions = new JwtSecurityToken(
+                issuer: "http://localhost:44321",
+                audience: "http://localhost:44321",
+                claims: new List<Claim>(),
+                expires: DateTime.Now.AddMinutes(5),
+                signingCredentials: signInCredentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
         }
 
         private bool usernameIsValid(UsernameModel username)

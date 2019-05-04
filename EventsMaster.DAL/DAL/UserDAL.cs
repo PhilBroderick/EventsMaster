@@ -45,6 +45,7 @@ namespace EventsMaster.DAL.DAL
 
             var userDALModel = new User
             {
+                Id = Guid.NewGuid().ToString(),
                 Username = user.Username,
                 Password = user.Password,
                 Created = user.Created,
