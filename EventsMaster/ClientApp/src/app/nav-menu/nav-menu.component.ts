@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -6,17 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
+
+  constructor(private router: Router) { }
+
   isExpanded = false;
-
-  collapse() {
-    this.isExpanded = false;
-  }
-
+  
   toggle() {
     this.isExpanded = !this.isExpanded;
-  }
-
-  logOut() {
-    localStorage.removeItem("jwt");
   }
 }

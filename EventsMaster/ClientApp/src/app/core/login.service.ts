@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 export class LoginService {
 
   invalidLogin = true;
+  isLoggedIn = false;
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -22,9 +23,15 @@ export class LoginService {
       let token = (<any>response).token;
       localStorage.setItem("jwt", token);
       this.invalidLogin = false;
-      this.router.navigate(["/"]);
+      this.isLoggedIn = true;
     }, err => {
       this.invalidLogin = true;
     });
+  }
+
+  logout() {
+    localStorage.removeItem("jwt");
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
   }
 }

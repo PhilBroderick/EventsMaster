@@ -5,9 +5,9 @@
     <label for="username" class="">Username</label>
     <input type="email" id="username" name="username" ngModel class="form-control" placeholder="Username" required (focusout)="checkUserNameIsValid($event.target.value)"/>
     <label for="password" class="">Password</label>
-    <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password" required/>
+    <input type="password" id="password" name="password" ngModel class="form-control" placeholder="Password" required ng-minlength="6" (input)="onPasswordChange($event.target.value)"/>
     <label for="confirmPassword">Confirm Password</label>
-    <input type="password" id="confirmPassword" name="confirmPassword" ngModel class="form-control" placeholder="Confirm Password" required/>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    <input [readonly]="!this.passwordEntered" type="password" id="confirmPassword" name="confirmPassword" ngModel class="form-control" placeholder="Confirm Password" required (input)="onConfirmPasswordChange($event.target.value)"/>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" id="register" disabled="disabled">Register</button>
   </div>
 </form>

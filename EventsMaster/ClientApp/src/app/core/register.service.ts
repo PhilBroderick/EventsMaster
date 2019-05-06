@@ -16,26 +16,20 @@ export class RegisterService {
     //check if passwords match, return if false
     if (form.value.password !== form.value.confirmPassword) {
       console.log("passwords don't match")
-      console.log(form.value.password)
-      console.log(form.value.confirmPassword)
       return;
     } else {
 
       let credentials = JSON.stringify(form.value);
-      console.log(credentials);
 
       this.http.post("https://eventsmasterapi.azurewebsites.net/auth/register", credentials, {
         headers: new HttpHeaders({
           "Content-Type": "application/json"
         })
       }).subscribe(response => {
-        console.log("success")
         let token = (<any>response).token;
         localStorage.setItem("jwt", token);
         this.invalidUsername = false;
-        this.router.navigate["/"];
       }, err => {
-        console.log("error")
         $('input').css("border", "2px solid red");
         this.invalidUsername = true;
       });
@@ -53,10 +47,8 @@ export class RegisterService {
         "Content-Type": "application/json"
       })
     }).subscribe(response => {
-      console.log("checkedUsername")
       $('#username').css("border", "2px solid green");
     }, err => {
-      console.log("error")
       $('#username').css("border", "2px solid red");
       this.invalidUsername = true;
     });

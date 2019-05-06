@@ -22,6 +22,7 @@ import { EventOverlayService } from './core/event-overlay.service';
 import { LoginService } from './core/login.service';
 import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './core/register.service';
+import { AccountHeaderComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RegisterService } from './core/register.service';
     EventsComponent,
     EventOverlayComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AccountHeaderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
