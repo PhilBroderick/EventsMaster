@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\account\account.component.ts" />
     <None Remove="ClientApp\src\app\Config\AppConfig.ts" />
     <None Remove="ClientApp\src\app\core\auth-guard.service.ts" />
     <None Remove="ClientApp\src\app\core\event-overlay.service.ts" />
@@ -52,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\account\account.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Config\AppConfig.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\core\auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\core\event-overlay.service.ts" />
