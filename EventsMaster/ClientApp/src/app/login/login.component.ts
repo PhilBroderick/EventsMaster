@@ -11,9 +11,10 @@ import { LoginService } from '../core/login.service';
   
 export class LoginComponent {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   login(form: NgForm) {
     this.loginService.login(form);
+    this.router.navigate(["/"]);
   }
 }

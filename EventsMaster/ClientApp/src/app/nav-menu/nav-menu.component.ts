@@ -11,17 +11,8 @@ export class NavMenuComponent {
   constructor(private router: Router) { }
 
   isExpanded = false;
-
-  collapse() {
-    this.isExpanded = false;
-  }
-
+  
   toggle() {
     this.isExpanded = !this.isExpanded;
-  }
-
-  logOut() {
-    localStorage.removeItem("jwt");
-    this.router.navigate(['/login']);
   }
 }

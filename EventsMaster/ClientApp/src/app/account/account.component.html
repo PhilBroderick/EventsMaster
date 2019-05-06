@@ -1,1 +1,7 @@
-<button (click)="redirect()">Click me</button>
+<div class="main-header">
+  <div class="account-info">
+    <a [routerLink]='["/login"]' *ngIf="!this.loginService.isLoggedIn">Login</a>
+    <a [routerLink]='["/register"]' *ngIf="!this.loginService.isLoggedIn">Register</a>
+    <a [routerLink]='["/login"]' *ngIf="this.loginService.isLoggedIn" (click)="logout()">Logout</a>
+  </div>
+</div> 
