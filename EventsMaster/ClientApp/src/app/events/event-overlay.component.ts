@@ -11,13 +11,7 @@ const ESCAPE = 27;
 
 @Component({
   selector: 'event-overlay',
-  template: `
-    <div class="overlay-content">
-      <p>{{event.name}}</p>
-      <p>{{event.description}}</p>
-      <button *ngIf="!this.loginService.invalidLogin" (click)="console()">Book tickets</button>
-    </div>
-`,
+  templateUrl: './event-overlay.component.html',
   styles: [`
     :host {
       display: block;
@@ -28,6 +22,17 @@ const ESCAPE = 27;
       margin: 0;
       padding: 1em;
     }
+
+    .book-button {
+      font-size: 14px;
+      font-family: Arial;
+      color: white;
+      background-color: #0be00b;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+  }
   `]
 })
 

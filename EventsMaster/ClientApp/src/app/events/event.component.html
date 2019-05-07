@@ -1,19 +1,18 @@
 <div>
   <ul class="events">
-    <li *ngFor="let event of events" (click)="onSelect(event)" [class.selected]="event === selectedEvent">
-      <div class="event-element">
+    <li *ngFor="let event of events" (click)="showPreview(event)" [class.selected]="event === selectedEvent">
+      <div class="event-element" >
         <div class="id">{{event.id}}</div>
         <div class="name">{{event.name}}</div>
         <div class="description">{{event.description}}</div>
         <button class="edit-button" (click)="onSelect(event)">Edit</button>
         <button class="delete-button" (click)="deleteEvent(event)">Delete</button>
-        <button class="show-preview-button" (click)="showPreview(event)">Show Preview</button>
+        <!--<button class="show-preview-button" (click)="showPreview(event)">Show Preview</button>-->
       </div>
     </li>
   </ul>
   <div class="editarea">
     <button (click)="enableAddMode()">Add New Event</button>
-    <button (click)="showPreview()">Show Preview</button>
     <div *ngIf="selectedEvent">
       <div class="editfields">
         <div>
