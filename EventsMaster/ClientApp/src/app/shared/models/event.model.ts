@@ -3,5 +3,6 @@ export class Event {
   name: string;
   category: string;
   description: string;
-  tickets: string
+  tickets: string;
+  imageUrl: string
 }

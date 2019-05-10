@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace EventsMaster.Api.Controllers
 {
@@ -12,6 +15,13 @@ namespace EventsMaster.Api.Controllers
     [ApiController]
     public class EventController : ControllerBase
     {
+        IConfiguration _configuration = null;
+
+        public EventController(IConfiguration config)
+        {
+            _configuration = config;
+        }
+
         [HttpGet, Route("")]
         public async Task<IActionResult> GetAllEventsAsync()
         {
@@ -24,6 +34,24 @@ namespace EventsMaster.Api.Controllers
         {
             var singleEvent = await DocumentDBRepository<Event>.GetItemAsync(id, category);
             return Ok(new { singleEvent });
+        }
+
+        [HttpGet, Route("{id}/{category}/image")]
+        public async Task<IActionResult> GetImageByEventAsync(string id, string category)
+        {
+            //var connStr = _configuration.GetValue<string>("AppSettings:StorageConnectionString");
+            var singleEvent = await DocumentDBRepository<Event>.GetItemAsync(id, category);
+
+            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connStr);
+
+            //CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+
+            //CloudBlobContainer container = blobClient.GetContainerReference("images");
+
+            //CloudBlockBlob blobReference = container.GetBlockBlobReference("21pilots.jpg");
+
+            return Ok(new { dataUri = singleEvent.ImageUrl} );
+
         }
 
         [HttpPost, Route("")]

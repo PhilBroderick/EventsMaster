@@ -263,3 +263,4 @@ __pycache__/
 /EventsMaster.Api/appSettings.config
 /EventsMaster.DAL/app.config
 /EventsMaster.Api/authdatabase.json
+/EventsMaster.Api/storageaccount.json
