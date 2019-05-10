@@ -18,5 +18,7 @@ namespace EventsMaster.Api
         public string Description { get; set; }
         [JsonProperty(PropertyName = "tickets")]
         public string Tickets { get; set; }
+        [JsonProperty(PropertyName = "imageUrl")]
+        public string ImageUrl { get; set; }
     }
 }

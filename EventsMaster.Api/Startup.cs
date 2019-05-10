@@ -26,6 +26,7 @@ namespace EventsMaster.Api
             builder.SetBasePath(env.ContentRootPath);
             builder.AddJsonFile("appsettings.json");
             builder.AddJsonFile("authdatabase.json");
+            builder.AddJsonFile("storageaccount.json");
 
             Configuration = builder.Build();
             HostingEnvironment = env;
