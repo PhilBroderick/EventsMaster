@@ -1,0 +1,5 @@
+<div class="overlay-content">
+  <h1>{{event.name}}</h1>
+  <p>{{event.description}}</p>
+  <button *ngIf="this.loginService.isLoggedIn" (click)="console()" class="book-button">Book tickets</button>
+</div>
