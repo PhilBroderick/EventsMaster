@@ -23,7 +23,6 @@ import { LoginService } from './core/login.service';
 import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './core/register.service';
 import { AccountHeaderComponent } from './account/account.component';
-import { ImageUploadComponent } from './upload/image-upload.component';
 import { UploadService } from './core/image-upload.service';
 import { NewEventComponent } from './events/new-event.component';
 import { componentFactoryName } from '@angular/compiler';
@@ -38,7 +37,6 @@ import { componentFactoryName } from '@angular/compiler';
     EventOverlayComponent,
     LoginComponent,
     RegisterComponent,
-    ImageUploadComponent,
     NewEventComponent,
     AccountHeaderComponent
   ],
@@ -58,7 +56,6 @@ import { componentFactoryName } from '@angular/compiler';
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'upload', component: ImageUploadComponent },
       { path: 'createEvent', component: NewEventComponent } 
     ])
   ],
