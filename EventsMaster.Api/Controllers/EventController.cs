@@ -39,17 +39,7 @@ namespace EventsMaster.Api.Controllers
         [HttpGet, Route("{id}/{category}/image")]
         public async Task<IActionResult> GetImageByEventAsync(string id, string category)
         {
-            //var connStr = _configuration.GetValue<string>("AppSettings:StorageConnectionString");
             var singleEvent = await DocumentDBRepository<Event>.GetItemAsync(id, category);
-
-            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connStr);
-
-            //CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
-
-            //CloudBlobContainer container = blobClient.GetContainerReference("images");
-
-            //CloudBlockBlob blobReference = container.GetBlockBlobReference("21pilots.jpg");
-
             return Ok(new { dataUri = singleEvent.ImageUrl} );
 
         }

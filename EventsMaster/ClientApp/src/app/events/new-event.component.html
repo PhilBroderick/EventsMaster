@@ -1,0 +1,16 @@
+<form class="form-new-event" #newEventForm="ngForm" (ngSubmit)="createEvent(newEventForm)">
+  <div class="container-fluid">
+    <h2 class="form-new-event-heading">Create New Event</h2>
+    <label for="name">Name: </label>
+    <input type="text" id="name" name="name" ngModel class="form-control" placeholder="name"/>
+    <label for="description">Description: </label>
+    <input type="text" id="description" name="description" ngModel class="form-control" placeholder="description"/>
+    <label for="category">Category: </label>
+    <input type="text" id="category" name="category" ngModel class="form-control" placeholder="category"/>
+    <label for="image">Event Image: </label>
+    <input type="file" (change)="onFileSelected($event)"/>
+    <label for="tickets">Tickets: </label>
+    <input type="text" id="tickets" name="tickts" ngModel class="form-control" placeholder="tickets"/>
+    <button class="btn btn-lg btn-primary" type="submit" id="createEvent">Create Event</button>
+  </div>
+</form>
