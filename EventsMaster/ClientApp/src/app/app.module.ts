@@ -56,7 +56,7 @@ import { componentFactoryName } from '@angular/compiler';
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'createEvent', component: NewEventComponent } 
+      { path: 'createEvent', component: NewEventComponent, canActivate: [AuthGuard]} 
     ])
   ],
   providers: [EventService, JwtHelper, AuthGuard, EventOverlayService, LoginService, RegisterService, UploadService],

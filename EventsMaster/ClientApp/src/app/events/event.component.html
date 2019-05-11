@@ -2,7 +2,7 @@
   <ul class="events">
     <li *ngFor="let event of events" (click)="showPreview(event)" [class.selected]="event === selectedEvent">
       <div class="event-element" >
-        <img src="{{event.imageUrl}}"/>
+        <img class="event-image" src="{{event.imageUrl}}"/>
         <div class="name">{{event.name}}</div>
         <div class="description">{{event.description}}</div>
         <button class="edit-button" (click)="onSelect(event)">Edit</button>
@@ -11,7 +11,6 @@
       </div>
     </li>
   </ul>
-  <a href="/createEvent">Create New Event</a>
   <div class="editarea">
     <button (click)="enableAddMode()">Add New Event</button>
     <div *ngIf="selectedEvent">

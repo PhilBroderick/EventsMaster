@@ -39,3 +39,8 @@ body {
   background-color: #c7ced8;
   border-radius: 7px;
 }
+
+.event-image {
+  height: 50px;
+  width: 50px;
+}
