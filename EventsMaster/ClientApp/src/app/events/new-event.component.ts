@@ -40,12 +40,4 @@ export class NewEventComponent {
           })
       })
   }
-
-  //createEventModel(form: NgForm, imageUri: string) {
-  //  this.event.name = form.value['name'].value;
-  //  this.event.description = form.value['description'].value;
-  //  this.event.category = form.value['category'].value;
-  //  this.event.tickets = form.value['tickets'].value;
-  //  this.event.imageUrl = imageUri;
-  //}
 }
