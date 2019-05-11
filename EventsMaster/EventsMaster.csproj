@@ -49,9 +49,9 @@
     <None Remove="ClientApp\src\app\events\event-overlay.component.ts" />
     <None Remove="ClientApp\src\app\events\event-overlay.tokens.ts" />
     <None Remove="ClientApp\src\app\events\event.component.ts" />
+    <None Remove="ClientApp\src\app\events\new-event.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
     <None Remove="ClientApp\src\app\register\register.component.ts" />
-    <None Remove="ClientApp\src\app\upload\image-upload.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,9 +67,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\events\event-overlay.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\events\event-overlay.tokens.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\events\event.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\events\new-event.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\register\register.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\upload\image-upload.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

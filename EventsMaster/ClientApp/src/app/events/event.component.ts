@@ -15,7 +15,6 @@ export class EventsComponent implements OnInit {
   addingEvent = false;
   selectedEvent: Event;
   deleteButtonSelected = false;
-
   constructor(private eventService: EventService, private previewDialog: EventOverlayService) { }
 
   ngOnInit() {

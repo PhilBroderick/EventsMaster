@@ -23,8 +23,9 @@ import { LoginService } from './core/login.service';
 import { RegisterComponent } from './register/register.component';
 import { RegisterService } from './core/register.service';
 import { AccountHeaderComponent } from './account/account.component';
-import { ImageUploadComponent } from './upload/image-upload.component';
 import { UploadService } from './core/image-upload.service';
+import { NewEventComponent } from './events/new-event.component';
+import { componentFactoryName } from '@angular/compiler';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { UploadService } from './core/image-upload.service';
     EventOverlayComponent,
     LoginComponent,
     RegisterComponent,
-    ImageUploadComponent,
+    NewEventComponent,
     AccountHeaderComponent
   ],
   imports: [
@@ -55,7 +56,7 @@ import { UploadService } from './core/image-upload.service';
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'upload', component: ImageUploadComponent }
+      { path: 'createEvent', component: NewEventComponent, canActivate: [AuthGuard]} 
     ])
   ],
   providers: [EventService, JwtHelper, AuthGuard, EventOverlayService, LoginService, RegisterService, UploadService],
