@@ -40,7 +40,7 @@ export class LoginService {
 
   logout() {
     localStorage.removeItem("jwt");
-    this.isLoggedIn = false; #
+    this.isLoggedIn = false;
     this.currentUserId = "";
     this.router.navigate(['/login']);
   }

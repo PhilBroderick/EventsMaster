@@ -1,19 +1,17 @@
 <div>
   <ul class="events">
-    <li *ngFor="let event of events" (click)="showPreview(event)" [class.selected]="event === selectedEvent">
-      <div class="event-element" >
-        <img class="event-image" src="{{event.imageUrl}}"/>
+    <li *ngFor="let event of events" [class.selected]="event === selectedEvent">
+      <div class="event-element">
+        <img (click)="showPreview(event)" class="event-image" src="{{event.imageUrl}}"/>
         <div class="name">{{event.name}}</div>
         <div class="description">{{event.description}}</div>
-        <div *ngIf="currentUserIsOwner(event)">{{event.userId}}</div>
-        <button *ngIf="currentUserIsOwner(event)" class="edit-button" (click)="onSelect(event)">Edit</button>
+        <button *ngIf="currentUserIsOwner(event)" class="edit-button" (click)="editEvent()">Edit</button>
         <button *ngIf="currentUserIsOwner(event)" class="delete-button" (click)="deleteEvent(event)">Delete</button>
-        <!--<button class="show-preview-button" (click)="showPreview(event)">Show Preview</button>-->
       </div>
     </li>
   </ul>
   <div class="editarea">
-    <button (click)="enableAddMode()">Add New Event</button>
+    <!--<button (click)="enableAddMode()">Add New Event</button>-->
     <div *ngIf="selectedEvent">
       <div class="editfields">
         <div>

@@ -36,24 +36,23 @@ export class EventsComponent implements OnInit {
     });
   }
 
-  enableAddMode() {
-    this.addingEvent = true;
-    this.selectedEvent = new Event();
-  }
+  //enableAddMode() {
+  //  this.addingEvent = true;
+  //  this.selectedEvent = new Event();
+  //}
 
   save() {
-    if (this.addingEvent) {
-      this.eventService.createEvent(this.selectedEvent).subscribe(event => {
-        this.addingEvent = false;
-        this.selectedEvent = null;
-        this.events.push(event);
-      })
-    } else {
+    //if (this.addingEvent) {
+    //  this.eventService.createEvent(this.selectedEvent).subscribe(event => {
+    //    this.addingEvent = false;
+    //    this.selectedEvent = null;
+    //    this.events.push(event);
+    //  })
+    //} else {
       this.eventService.updateEvent(this.selectedEvent).subscribe(event => {
         this.addingEvent = false;
         this.selectedEvent = null;
       })
-    }
   }
 
   deleteEvent(event: Event) {
@@ -85,5 +84,9 @@ export class EventsComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  editEvent() {
+    console.log("not yet implemented");
   }
 }
