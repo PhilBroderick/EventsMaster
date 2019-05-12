@@ -76,7 +76,7 @@ namespace EventsMaster.Api.Controllers
                 
         }
 
-        [HttpGet, Authorize, Route("userid")]
+        [HttpPost, Authorize, Route("userid")]
         public IActionResult GetUserId([FromBody] AppUser user)
         {
             if(user == null || !ModelState.IsValid)

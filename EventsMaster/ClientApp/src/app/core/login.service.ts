@@ -25,6 +25,16 @@ export class LoginService {
       localStorage.setItem("jwt", token);
       this.invalidLogin = false;
       this.isLoggedIn = true;
+      this.http.post("https://eventsmasterapi.azurewebsites.net/auth/userid", credentials, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token
+        })
+      }).subscribe(res => {
+        console.log(res);
+        this.userId = (<any>res).userid;
+        console.log(this.userId);
+      })
     }, err => {
       this.invalidLogin = true;
     });
