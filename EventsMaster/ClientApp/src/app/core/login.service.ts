@@ -8,6 +8,7 @@ export class LoginService {
 
   invalidLogin = true;
   isLoggedIn = false;
+  userId: string = null;
 
   constructor(private router: Router, private http: HttpClient) { }
 

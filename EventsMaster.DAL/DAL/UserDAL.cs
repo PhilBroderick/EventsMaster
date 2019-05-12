@@ -62,5 +62,10 @@ namespace EventsMaster.DAL.DAL
             _dbContext.User.Add(user);
             _dbContext.SaveChanges();
         }
+
+        public string GetUserId(IUser user)
+        {
+            return _dbContext.User.Where(u => u.Username == user.Username).Select(u => u.Id).Single();
+        }
     }
 }
