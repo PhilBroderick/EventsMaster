@@ -6,8 +6,8 @@
         <div class="name">{{event.name}}</div>
         <div class="description">{{event.description}}</div>
         <div *ngIf="currentUserIsOwner(event)">{{event.userId}}</div>
-        <button class="edit-button" (click)="onSelect(event)">Edit</button>
-        <button class="delete-button" (click)="deleteEvent(event)">Delete</button>
+        <button *ngIf="currentUserIsOwner(event)" class="edit-button" (click)="onSelect(event)">Edit</button>
+        <button *ngIf="currentUserIsOwner(event)" class="delete-button" (click)="deleteEvent(event)">Delete</button>
         <!--<button class="show-preview-button" (click)="showPreview(event)">Show Preview</button>-->
       </div>
     </li>
