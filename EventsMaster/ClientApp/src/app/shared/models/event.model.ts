@@ -4,5 +4,6 @@ export class Event {
   category: string;
   description: string;
   tickets: string;
-  imageUrl: string
+  imageUrl: string;
+  userId: string
 }

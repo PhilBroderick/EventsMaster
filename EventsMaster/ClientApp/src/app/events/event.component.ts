@@ -4,6 +4,7 @@ import { Event } from "../shared/models/event.model";
 import { EventService } from "../core/event.service";
 import { EventOverlayService } from "../core/event-overlay.service";
 import { EventOverlayRef } from "./event-overlay-ref";
+import { LoginService } from "../core/login.service";
 
 @Component({
   selector: 'app-events',
@@ -15,7 +16,7 @@ export class EventsComponent implements OnInit {
   addingEvent = false;
   selectedEvent: Event;
   deleteButtonSelected = false;
-  constructor(private eventService: EventService, private previewDialog: EventOverlayService) { }
+  constructor(private eventService: EventService, private previewDialog: EventOverlayService, private loginService: LoginService) { }
 
   ngOnInit() {
     this.getEvents();
@@ -76,5 +77,13 @@ export class EventsComponent implements OnInit {
       this.selectedEvent = event;
     }
     this.deleteButtonSelected = false;
+  }
+
+  currentUserIsOwner(event: Event) {
+    if (event.userId == this.loginService.currentUserId) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -8,7 +8,7 @@ export class LoginService {
 
   invalidLogin = true;
   isLoggedIn = false;
-  userId: string = null;
+  currentUserId: string = null;
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -32,8 +32,8 @@ export class LoginService {
         })
       }).subscribe(res => {
         console.log(res);
-        this.userId = (<any>res).userid;
-        console.log(this.userId);
+        this.currentUserId = (<any>res).userid;
+        console.log(this.currentUserId);
       })
     }, err => {
       this.invalidLogin = true;
