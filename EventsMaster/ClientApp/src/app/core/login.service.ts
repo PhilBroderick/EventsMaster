@@ -31,9 +31,7 @@ export class LoginService {
           "Authorization": "Bearer " + token
         })
       }).subscribe(res => {
-        console.log(res);
         this.currentUserId = (<any>res).userid;
-        console.log(this.currentUserId);
       })
     }, err => {
       this.invalidLogin = true;
