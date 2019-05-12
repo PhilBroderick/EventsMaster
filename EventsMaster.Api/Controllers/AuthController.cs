@@ -10,6 +10,7 @@ using EventsMaster.Api.Models;
 using EventsMaster.DAL.DAL;
 using EventsMaster.DAL.Interfaces;
 using EventsMaster.DAL.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -73,6 +74,19 @@ namespace EventsMaster.Api.Controllers
             }
             return BadRequest("Error occured");
                 
+        }
+
+        [HttpPost, Authorize, Route("userid")]
+        public IActionResult GetUserId([FromBody] AppUser user)
+        {
+            if(user == null || !ModelState.IsValid)
+            {
+                return BadRequest("Invalid client request");
+            }
+
+            var userId = _userDAL.GetUserId(user);
+
+            return Ok(new { userid = userId });
         }
 
         private bool createUser(AppUser user)

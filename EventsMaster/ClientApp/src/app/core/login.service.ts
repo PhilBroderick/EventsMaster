@@ -8,6 +8,7 @@ export class LoginService {
 
   invalidLogin = true;
   isLoggedIn = false;
+  currentUserId: string = null;
 
   constructor(private router: Router, private http: HttpClient) { }
 
@@ -24,6 +25,14 @@ export class LoginService {
       localStorage.setItem("jwt", token);
       this.invalidLogin = false;
       this.isLoggedIn = true;
+      this.http.post("https://eventsmasterapi.azurewebsites.net/auth/userid", credentials, {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token
+        })
+      }).subscribe(res => {
+        this.currentUserId = (<any>res).userid;
+      })
     }, err => {
       this.invalidLogin = true;
     });
