@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  background: white;
+}
+
+h1 {
+  margin: 0;
+  padding: 1em;
+}
+
+.book-button {
+  font-size: 14px;
+  font-family: Arial;
+  color: white;
+  background-color: #0be00b;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input {
+  display: block;
+  margin: 5px;
+}
+
+textarea {
+  resize: none;
+  margin: 5px;
+}
