@@ -23,7 +23,7 @@ export class EventsComponent implements OnInit {
   }
 
   showPreview(event) {
-
+    this.previewDialog.isEditable = false;
     let dialogRef: EventOverlayRef = this.previewDialog.open({
       event: event
     });
@@ -86,7 +86,10 @@ export class EventsComponent implements OnInit {
     }
   }
 
-  editEvent() {
-    console.log("not yet implemented");
+  editEvent(event: Event) {
+    this.previewDialog.isEditable = true;
+    let dialogRef: EventOverlayRef = this.previewDialog.open({
+      event: event
+    });
   }
 }
