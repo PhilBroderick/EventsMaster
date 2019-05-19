@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var EventOverlayRef = /** @class */ (function () {
     function EventOverlayRef(overlayRef) {
         this.overlayRef = overlayRef;
+        this.isEditable = false;
     }
     EventOverlayRef.prototype.close = function () {
+        this.isEditable = false;
         this.overlayRef.dispose();
     };
     EventOverlayRef.prototype.console = function () {

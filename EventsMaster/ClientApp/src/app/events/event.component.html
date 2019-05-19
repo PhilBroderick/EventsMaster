@@ -5,7 +5,7 @@
         <img (click)="showPreview(event)" class="event-image" src="{{event.imageUrl}}"/>
         <div class="name">{{event.name}}</div>
         <div class="description">{{event.description}}</div>
-        <button *ngIf="currentUserIsOwner(event)" class="edit-button" (click)="editEvent()">Edit</button>
+        <button *ngIf="currentUserIsOwner(event)" class="edit-button" (click)="editEvent(event)">Edit</button>
         <button *ngIf="currentUserIsOwner(event)" class="delete-button" (click)="deleteEvent(event)">Delete</button>
       </div>
     </li>

@@ -31,6 +31,8 @@ const DEFAULT_CONFIG: EventOverlayConfig = {
 @Injectable()
 export class EventOverlayService {
 
+  isEditable = false;
+
   constructor(private injector: Injector, private overlay: Overlay) { }
 
   open(config: EventOverlayConfig = {}) {
@@ -44,6 +46,8 @@ export class EventOverlayService {
     const overlayComponent = this.attachDialogContainer(overlayRef, dialogConfig, dialogRef);
 
     overlayRef.backdropClick().subscribe(_ => dialogRef.close());
+    
+    dialogRef.isEditable = this.isEditable;
 
     return dialogRef;
   }
