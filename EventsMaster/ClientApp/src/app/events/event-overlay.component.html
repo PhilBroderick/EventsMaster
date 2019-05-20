@@ -4,7 +4,7 @@
   <p *ngIf="!this.dialogRef.isEditable">{{event.description}}</p>
   <textarea *ngIf="this.dialogRef.isEditable" [(ngModel)]="event.description" rows="7" cols="50"></textarea>
   <input *ngIf="this.dialogRef.isEditable" [(ngModel)]="event.category"/>
-  <input *ngIf="this.dialogRef.IsEditable" [(ngModel)]="event.tickets"/>
-  <button *ngIf="this.dialogRef.IsEditable" (click)="updateEvent(event)" class="book-button">Save</button>
+  <input *ngIf="this.dialogRef.isEditable" [(ngModel)]="event.tickets"/>
+  <button *ngIf="this.dialogRef.isEditable" (click)="updateEvent(event)" class="book-button">Save</button>
   <button *ngIf="this.loginService.isLoggedIn" (click)="console()" class="book-button">Book tickets</button>
 </div>
