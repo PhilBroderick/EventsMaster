@@ -10,8 +10,4 @@ export class EventOverlayRef {
     this.isEditable = false;
     this.overlayRef.dispose();
   }
-
-  console(): void {
-    alert("hello");
-  }
 }
