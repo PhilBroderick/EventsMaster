@@ -26,6 +26,7 @@ import { AccountHeaderComponent } from './account/account.component';
 import { UploadService } from './core/image-upload.service';
 import { NewEventComponent } from './events/new-event.component';
 import { componentFactoryName } from '@angular/compiler';
+import { EventDetailsComponent } from './events/event-details.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { componentFactoryName } from '@angular/compiler';
     LoginComponent,
     RegisterComponent,
     NewEventComponent,
-    AccountHeaderComponent
+    AccountHeaderComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,7 +58,8 @@ import { componentFactoryName } from '@angular/compiler';
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'createEvent', component: NewEventComponent, canActivate: [AuthGuard]} 
+      { path: 'createEvent', component: NewEventComponent, canActivate: [AuthGuard] },
+      { path: 'eventDetails/:eventId', component: EventDetailsComponent}
     ])
   ],
   providers: [EventService, JwtHelper, AuthGuard, EventOverlayService, LoginService, RegisterService, UploadService],

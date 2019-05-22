@@ -45,6 +45,7 @@
     <None Remove="ClientApp\src\app\core\image-upload.service.ts" />
     <None Remove="ClientApp\src\app\core\login.service.ts" />
     <None Remove="ClientApp\src\app\core\register.service.ts" />
+    <None Remove="ClientApp\src\app\events\event-details.component.ts" />
     <None Remove="ClientApp\src\app\events\event-overlay-ref.ts" />
     <None Remove="ClientApp\src\app\events\event-overlay.component.ts" />
     <None Remove="ClientApp\src\app\events\event-overlay.tokens.ts" />
@@ -63,6 +64,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\core\image-upload.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\core\login.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\core\register.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\events\event-details.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\events\event-overlay-ref.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\events\event-overlay.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\events\event-overlay.tokens.ts" />
