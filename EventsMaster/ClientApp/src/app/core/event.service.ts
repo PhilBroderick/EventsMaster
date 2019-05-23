@@ -23,8 +23,8 @@ export class EventService {
     return this.http.post<Event>('https://eventsmasterapi.azurewebsites.net/events', event);
   }
 
-  getEvent(id: string, category: string) {
-    return this.http.get<Event>('https://eventsmasterapi.azurewebsites.net/events?id=' + id + '/' + category);
+  getEvent(id: string, category: string) : Observable<Event> {
+    return this.http.get<Event>('https://eventsmasterapi.azurewebsites.net/events/' + id + '/' + category);
   }
 
   updateEvent(event: Event) {

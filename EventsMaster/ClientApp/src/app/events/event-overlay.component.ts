@@ -8,6 +8,7 @@ import { LoginService } from '../core/login.service';
 import { EventService } from '../core/event.service';
 import { UploadService } from '../core/image-upload.service';
 import { Event } from '../shared/models/event.model';
+import { Router } from '@angular/router';
 
 const ANIMATION_TIMINGS = '400ms cubic-bezier(0.25, 0.8, 0.25, 1)';
 const ESCAPE = 27;
@@ -33,6 +34,7 @@ export class EventOverlayComponent {
     public loginService: LoginService,
     private eventService: EventService,
     private uploadService: UploadService,
+    private router: Router,
     @Inject(EVENT_DIALOG_DATA) public event: any) { }
   
   updateEvent(event: Event) {
@@ -55,5 +57,10 @@ export class EventOverlayComponent {
   onFileSelected(event) {
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile);
+  }
+
+  bookTickets(event) {
+    this.dialogRef.close();
+    this.router.navigate(["eventDetails/" + event.id + "/" + event.category]);
   }
 }
