@@ -10,5 +10,5 @@
   <label for="image">Image: </label>
   <input type="file" (change)="onFileSelected($event)"/>
   <button *ngIf="this.dialogRef.isEditable" (click)="updateEvent(event)" class="book-button">Save</button>
-  <button *ngIf="this.loginService.isLoggedIn" (click)="console()" class="book-button">Book tickets</button>
+  <button *ngIf="this.loginService.isLoggedIn" (click)="bookTickets(event)" class="book-button">Book tickets</button>
 </div>

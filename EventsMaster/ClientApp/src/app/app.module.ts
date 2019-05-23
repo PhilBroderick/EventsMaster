@@ -59,7 +59,7 @@ import { EventDetailsComponent } from './events/event-details.component';
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'createEvent', component: NewEventComponent, canActivate: [AuthGuard] },
-      { path: 'eventDetails/:eventId', component: EventDetailsComponent}
+      { path: 'eventDetails/:eventId/:eventCategory', component: EventDetailsComponent}
     ])
   ],
   providers: [EventService, JwtHelper, AuthGuard, EventOverlayService, LoginService, RegisterService, UploadService],
