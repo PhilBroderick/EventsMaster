@@ -33,7 +33,7 @@ namespace EventsMaster.Api.Controllers
         public async Task<IActionResult> GetEventByIdAsync(string id, string category)
         {
             var singleEvent = await DocumentDBRepository<Event>.GetItemAsync(id, category);
-            return Ok(new { singleEvent });
+            return Ok(singleEvent);
         }
 
         [HttpGet, Route("{id}/{category}/image")]
