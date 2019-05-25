@@ -24,6 +24,8 @@ export class EventDetailsComponent {
       if (this.eventId !== null) {
         this.eventService.getEvent(this.eventId, this.category).subscribe(event => {
           this.event = event;
+          console.log(this.event);
+          console.log(this.event.attendees);
         })
       }
     })

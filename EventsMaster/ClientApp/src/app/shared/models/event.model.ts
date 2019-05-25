@@ -1,3 +1,5 @@
+import { UserTickets } from "./userTickets-model";
+
 export class Event {
   id: string;
   name: string;
@@ -5,5 +7,8 @@ export class Event {
   description: string;
   tickets: string;
   imageUrl: string;
-  userId: string
+  userId: string;
+  attendees: Array<string>;
+  userTickets: Array<UserTickets>;
+  totalTicketsSold: number;
 }
