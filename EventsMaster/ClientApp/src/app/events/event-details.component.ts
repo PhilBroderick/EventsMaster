@@ -22,15 +22,12 @@ export class EventDetailsComponent {
       this.eventId = params.get("eventId");
       this.category = params.get("eventCategory");
       if (this.eventId !== null) {
-        console.log(this.eventId);
-        console.log(this.category);
         this.eventService.getEvent(this.eventId, this.category).subscribe(event => {
-          console.log("here");
           this.event = event;
+          console.log(this.event);
+          console.log(this.event.attendees);
         })
       }
     })
   }
-
-
 }

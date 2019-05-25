@@ -53,6 +53,7 @@
     <None Remove="ClientApp\src\app\events\new-event.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
     <None Remove="ClientApp\src\app\register\register.component.ts" />
+    <None Remove="ClientApp\src\app\shared\models\userTickets-model.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,6 +73,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\events\new-event.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\register\register.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\userTickets-model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
