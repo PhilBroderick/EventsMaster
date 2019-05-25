@@ -1,3 +1,7 @@
 <div>
-  <p>This is the start of the event details page.</p>
+  <img src="{{event.imageUrl}}" />
+  <h1>{{event.name}}</h1>
+  <p *ngIf="this.lowTicketsLeft">Not many tickets left!</p>
+  <p *ngIf="!this.lowTicketsLeft">Lots of tickets left!</p>
+  <button *ngIf="this.ticketsAvailable">Book Tickets!</button>
 </div>

@@ -14,6 +14,8 @@ export class EventDetailsComponent {
   eventId = null;
   event: Event;
   category = null;
+  ticketsAvailable = false;
+  lowTicketsLeft = false;
 
   constructor(private route: ActivatedRoute, private eventService: EventService) { }
 
@@ -24,10 +26,19 @@ export class EventDetailsComponent {
       if (this.eventId !== null) {
         this.eventService.getEvent(this.eventId, this.category).subscribe(event => {
           this.event = event;
-          console.log(this.event);
-          console.log(this.event.attendees);
+          let totalTickets = parseFloat(this.event.tickets);
+          console.log(totalTickets);
+          let number = this.event.totalTicketsSold / totalTickets;
+          if (this.event.totalTicketsSold < totalTickets && (this.event.totalTicketsSold / totalTickets) >= 0.9) {
+            this.ticketsAvailable = true;
+            this.lowTicketsLeft = true;
+          } else if (this.event.totalTicketsSold < totalTickets && (this.event.totalTicketsSold / totalTickets) > 0.9) {
+            this.ticketsAvailable = true;
+          }
         })
       }
     })
   }
+
+
 }
