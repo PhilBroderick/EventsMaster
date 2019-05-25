@@ -87,6 +87,7 @@ namespace EventsMaster.Api.Controllers
                 if (ModelState.IsValid)
                 {
                     var categoryToUpper = CategoryToUpper(category);
+                    singleEvent.TotalTicketsSold = calculateTotalTicketsSold(singleEvent);
                     var updateEvent = await DocumentDBRepository<Event>.GetSingleItemAsync(d => d.Id == id && d.Category == categoryToUpper);
                     if (updateEvent == null)
                         return NotFound();
@@ -104,6 +105,17 @@ namespace EventsMaster.Api.Controllers
                 };
                 return new ObjectResult(error);
             }
+        }
+
+        private int calculateTotalTicketsSold(Event singleEvent)
+        {
+            var totalTickets = 0;
+
+            foreach (var userTickets in singleEvent.UserTickets)
+            {
+                totalTickets += userTickets.TicketsPurchased;    
+            }
+            return totalTickets;
         }
 
         private string CategoryToUpper(string lowerCategory)
