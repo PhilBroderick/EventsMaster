@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Event } from '../shared/models/event.model';
 import { EventService } from '../core/event.service';
+import * as $ from 'jquery';
+import { LoginService } from '../core/login.service';
 
 @Component({
   selector: 'event-details',
@@ -16,8 +18,9 @@ export class EventDetailsComponent {
   category = null;
   ticketsAvailable = false;
   lowTicketsLeft = false;
+  ticketsToReserve = 0;
 
-  constructor(private route: ActivatedRoute, private eventService: EventService) { }
+  constructor(private route: ActivatedRoute, private eventService: EventService, private loginService: LoginService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -40,5 +43,31 @@ export class EventDetailsComponent {
     })
   }
 
+  subtractTicket() {
+    if (this.ticketsToReserve == 0) {
+      return;
+    } else {
+      this.ticketsToReserve -= 1;
+      $('.error-container p').text('');
+      $('#ticketTotal').text(this.ticketsToReserve);
+    }
+  }
 
+  addTicket() {
+    let ticketNum = parseFloat(this.event.tickets);
+    let ticketsLeft = ticketNum - this.event.totalTicketsSold;
+
+    if (this.ticketsToReserve == 10 || this.ticketsToReserve >= ticketsLeft) {
+      $('.error-container p').text("This is the maximum amount of tickets that can be purchased for this event!");
+      return;
+    } else {
+      this.ticketsToReserve += 1;
+      $('.error-container p').text('');
+      $('#ticketTotal').text(this.ticketsToReserve);
+    }
+  }
+
+  bookTickets() {
+
+  }
 }

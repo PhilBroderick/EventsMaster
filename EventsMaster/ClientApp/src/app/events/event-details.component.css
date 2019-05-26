@@ -1,2 +1,8 @@
-body {
+.book-tickets {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#ticketTotal {
+  margin: 20px;
 }
