@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from '../shared/models/event.model';
 import { EventService } from '../core/event.service';
 import * as $ from 'jquery';
 import { LoginService } from '../core/login.service';
+import { UserTickets } from '../shared/models/userTickets-model';
 
 @Component({
   selector: 'event-details',
@@ -20,7 +21,7 @@ export class EventDetailsComponent {
   lowTicketsLeft = false;
   ticketsToReserve = 0;
 
-  constructor(private route: ActivatedRoute, private eventService: EventService, private loginService: LoginService) { }
+  constructor(private route: ActivatedRoute, private eventService: EventService, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -36,6 +37,8 @@ export class EventDetailsComponent {
             this.ticketsAvailable = true;
             this.lowTicketsLeft = true;
           } else if (this.event.totalTicketsSold < totalTickets && (this.event.totalTicketsSold / totalTickets) > 0.9) {
+            this.ticketsAvailable = true;
+          } else {
             this.ticketsAvailable = true;
           }
         })
@@ -68,6 +71,16 @@ export class EventDetailsComponent {
   }
 
   bookTickets() {
-
+    if (!this.loginService.isLoggedIn) {
+      this.router.navigate(['/login']);
+      return;
+    } else {
+      this.event.attendees.push(this.loginService.currentUserId);
+      this.event.userTickets.push(new UserTickets(this.loginService.currentUserId, this.ticketsToReserve));
+      this.eventService.updateEvent(this.event).subscribe(event => {
+        this.event = event;
+        $('.error-container p').text("Tickets successfully booked - you will receive an email shortly with the details");
+      })
+    }
   }
 }
