@@ -29,5 +29,11 @@ namespace EventsMaster.Api
         public List<UserTickets> UserTickets { get; set; }
         [JsonProperty(PropertyName = "totalTicketsSold")]
         public int TotalTicketsSold { get; set; }
+        [JsonProperty(PropertyName = "seatsAvailable")]
+        public List<Seat> SeatsAvailable { get; set; }
+        [JsonProperty(PropertyName = "seatsBooked")]
+        public List<Seat> SeatsBooked { get; set; }
+        [JsonProperty(PropertyName = "standing")]
+        public int Standing { get; set; }
     }
 }

@@ -23,6 +23,7 @@ namespace EventsMaster.Api.Controllers
         }
 
         [HttpGet, Route("")]
+        [Produces("application/json")]
         public async Task<IActionResult> GetAllEventsAsync()
         {
             var events = await DocumentDBRepository<Event>.GetItemsAsync();
@@ -30,6 +31,7 @@ namespace EventsMaster.Api.Controllers
         }
 
         [HttpGet, Route("{id}/{category}")]
+        [Produces("application/json")]
         public async Task<IActionResult> GetEventByIdAsync(string id, string category)
         {
             var singleEvent = await DocumentDBRepository<Event>.GetItemAsync(id, category);
@@ -37,6 +39,7 @@ namespace EventsMaster.Api.Controllers
         }
 
         [HttpGet, Route("{id}/{category}/image")]
+        [Produces("application/json")]
         public async Task<IActionResult> GetImageByEventAsync(string id, string category)
         {
             var singleEvent = await DocumentDBRepository<Event>.GetItemAsync(id, category);
@@ -80,6 +83,8 @@ namespace EventsMaster.Api.Controllers
         }
 
         [HttpPut, Route("{id}/{category}")]
+        [Produces("application/json")]
+        [Consumes("applcation/json")]
         public async Task<IActionResult> UpdateEventAsync(string id, string category, [FromBody] Event singleEvent)
         {
             try
@@ -104,6 +109,62 @@ namespace EventsMaster.Api.Controllers
                     status = StatusCodes.Status500InternalServerError
                 };
                 return new ObjectResult(error);
+            }
+        }
+
+        [HttpGet, Route("{id}/{category}/seatsAvailable")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetAvailableTicketsAsyc(string id, string category)
+        {
+            var evt = await DocumentDBRepository<Event>.GetItemAsync(id, category);
+            if (evt == null)
+                return NotFound();
+            return Ok(new { seatsAvailable = evt.SeatsAvailable });
+        }
+
+        [HttpPut, Route("{id}/{category}/book")]
+        [Produces("application/json")]
+        [Consumes("applcation/json")]
+        public async Task<IActionResult> BookTicketsAsync(string id, string category, [FromBody] List<Seat> seats = null, int? standing = null)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var eventToUpdate = await DocumentDBRepository<Event>.GetSingleItemAsync(d => d.Id == id && d.Category == category);
+                    if (eventToUpdate == null)
+                        return NotFound();
+                    bookEventSeats(seats, standing, eventToUpdate);
+                    await DocumentDBRepository<Event>.UpdateItemAsync(eventToUpdate.Id, eventToUpdate);
+                    return Ok(eventToUpdate);
+                }
+                return NotFound();
+            }
+            catch(Exception ex)
+            {
+                var error = new
+                {
+                    message = ex.ToString(),
+                    status = StatusCodes.Status500InternalServerError
+                };
+                return new ObjectResult(error);
+            }
+        }
+
+        private static void bookEventSeats(List<Seat> seats, int? standing, Event eventToUpdate)
+        {
+            foreach (var seat in seats)
+            {
+                seat.IsBooked = true;
+            }
+            eventToUpdate.SeatsBooked.AddRange(seats);
+            foreach (var seat in seats)
+            {
+                eventToUpdate.SeatsAvailable.Remove(seat);
+            }
+            if (standing.HasValue)
+            {
+                eventToUpdate.Standing += standing.GetValueOrDefault();
             }
         }
 
