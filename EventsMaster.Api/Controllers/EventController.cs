@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EventsMaster.Api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ namespace EventsMaster.Api.Controllers
     [ApiController]
     public class EventController : ControllerBase
     {
-        IConfiguration _configuration = null;
+        readonly IConfiguration _configuration = null;
 
         public EventController(IConfiguration config)
         {
@@ -53,6 +54,8 @@ namespace EventsMaster.Api.Controllers
             if (ModelState.IsValid)
             {
                 singleEvent.Id = Guid.NewGuid().ToString();
+                singleEvent.SeatsAvailable = new List<Seat>();
+                singleEvent.SeatsBooked = new List<Seat>();
                 await DocumentDBRepository<Event>.CreateItemAsync(singleEvent);
                 return Ok(singleEvent);
             }
@@ -84,7 +87,7 @@ namespace EventsMaster.Api.Controllers
 
         [HttpPut, Route("{id}/{category}")]
         [Produces("application/json")]
-        [Consumes("applcation/json")]
+        [Consumes("application/json")]
         public async Task<IActionResult> UpdateEventAsync(string id, string category, [FromBody] Event singleEvent)
         {
             try
@@ -92,7 +95,7 @@ namespace EventsMaster.Api.Controllers
                 if (ModelState.IsValid)
                 {
                     var categoryToUpper = CategoryToUpper(category);
-                    singleEvent.TotalTicketsSold = calculateTotalTicketsSold(singleEvent);
+                    singleEvent.TotalTicketsSold = CalculateTotalTicketsSold(singleEvent);
                     var updateEvent = await DocumentDBRepository<Event>.GetSingleItemAsync(d => d.Id == id && d.Category == categoryToUpper);
                     if (updateEvent == null)
                         return NotFound();
@@ -124,8 +127,8 @@ namespace EventsMaster.Api.Controllers
 
         [HttpPut, Route("{id}/{category}/book")]
         [Produces("application/json")]
-        [Consumes("applcation/json")]
-        public async Task<IActionResult> BookTicketsAsync(string id, string category, [FromBody] List<Seat> seats = null, int? standing = null)
+        [Consumes("application/json")]
+        public async Task<IActionResult> BookTicketsAsync(string id, string category, [FromBody] RootObject seatList)
         {
             try
             {
@@ -134,7 +137,14 @@ namespace EventsMaster.Api.Controllers
                     var eventToUpdate = await DocumentDBRepository<Event>.GetSingleItemAsync(d => d.Id == id && d.Category == category);
                     if (eventToUpdate == null)
                         return NotFound();
-                    bookEventSeats(seats, standing, eventToUpdate);
+
+                    if (eventToUpdate.SeatsAvailable == null)
+                        eventToUpdate.SeatsAvailable = new List<Seat>();
+
+                    if (eventToUpdate.SeatsBooked == null)
+                        eventToUpdate.SeatsBooked = new List<Seat>();
+
+                    BookEventSeats(seatList, seatList.standing, eventToUpdate);
                     await DocumentDBRepository<Event>.UpdateItemAsync(eventToUpdate.Id, eventToUpdate);
                     return Ok(eventToUpdate);
                 }
@@ -151,14 +161,14 @@ namespace EventsMaster.Api.Controllers
             }
         }
 
-        private static void bookEventSeats(List<Seat> seats, int? standing, Event eventToUpdate)
+        private static void BookEventSeats(RootObject seatList, int? standing, Event eventToUpdate)
         {
-            foreach (var seat in seats)
+            foreach (var seat in seatList.seats)
             {
                 seat.IsBooked = true;
             }
-            eventToUpdate.SeatsBooked.AddRange(seats);
-            foreach (var seat in seats)
+            eventToUpdate.SeatsBooked.AddRange(seatList.seats);
+            foreach (var seat in seatList.seats)
             {
                 eventToUpdate.SeatsAvailable.Remove(seat);
             }
@@ -168,7 +178,7 @@ namespace EventsMaster.Api.Controllers
             }
         }
 
-        private int calculateTotalTicketsSold(Event singleEvent)
+        private int CalculateTotalTicketsSold(Event singleEvent)
         {
             var totalTickets = 0;
 
