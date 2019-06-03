@@ -5,6 +5,8 @@ import { EventService } from '../core/event.service';
 import * as $ from 'jquery';
 import { LoginService } from '../core/login.service';
 import { UserTickets } from '../shared/models/userTickets-model';
+import { Seat } from '../shared/models/seat.model';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'event-details',
@@ -31,7 +33,7 @@ export class EventDetailsComponent {
         this.eventService.getEvent(this.eventId, this.category).subscribe(event => {
           this.event = event;
           let totalTickets = parseFloat(this.event.tickets);
-          console.log(totalTickets);
+          this.initializeTicketsAvailable(this.event.seatsAvailable);
           let number = this.event.totalTicketsSold / totalTickets;
           if (this.event.totalTicketsSold < totalTickets && (this.event.totalTicketsSold / totalTickets) >= 0.9) {
             this.ticketsAvailable = true;
@@ -82,5 +84,12 @@ export class EventDetailsComponent {
         $('.error-container p').text("Tickets successfully booked - you will receive an email shortly with the details");
       })
     }
+  }
+
+  initializeTicketsAvailable(seatsAvailabe: Array<Seat>) {
+    let $seatContainer = $('.available-seats-container');
+    seatsAvailabe.forEach(function (seat) {
+      $seatContainer.append('<p>' + seat.seatId + '</p>');
+    })
   }
 }
