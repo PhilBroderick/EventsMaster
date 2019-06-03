@@ -22,6 +22,7 @@ export class EventDetailsComponent {
   ticketsAvailable = false;
   lowTicketsLeft = false;
   ticketsToReserve = 0;
+  seatsToBook = [];
 
   constructor(private route: ActivatedRoute, private eventService: EventService, private loginService: LoginService, private router: Router) { }
 
@@ -92,8 +93,22 @@ export class EventDetailsComponent {
       if ((index + 1) / 4 > 1) {
         console.log(index);
       } else {
-        $seatContainer.append('<div class="seat-container"> <p>' + seat.seatId + '</p> <input type="checkbox" /> </div>');
+        $seatContainer.append('<div class="seat-container"><input type="checkbox" id="seat" value="' + seat.seatId + '"/> </div>');
       }
     })
+  }
+
+  selectSeats() {
+    let $seatContainer = $('.available-seats-container');
+    let seatArr = [];
+    $seatContainer.find('.seat-container input').each(function () {
+      if ($(this).prop('checked')) {
+        seatArr.push(new Seat($(this).val().toString(), true));
+      } else {
+        return;
+      }
+    })
+    this.seatsToBook = seatArr;
+    console.log(this.seatsToBook);
   }
 }
