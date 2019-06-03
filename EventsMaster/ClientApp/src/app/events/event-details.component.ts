@@ -88,8 +88,12 @@ export class EventDetailsComponent {
 
   initializeTicketsAvailable(seatsAvailabe: Array<Seat>) {
     let $seatContainer = $('.available-seats-container');
-    seatsAvailabe.forEach(function (seat) {
-      $seatContainer.append('<p>' + seat.seatId + '</p>');
+    seatsAvailabe.forEach(function (seat, index) {
+      if ((index + 1) / 4 > 1) {
+        console.log(index);
+      } else {
+        $seatContainer.append('<div class="seat-container"> <p>' + seat.seatId + '</p> <input type="checkbox" /> </div>');
+      }
     })
   }
 }
