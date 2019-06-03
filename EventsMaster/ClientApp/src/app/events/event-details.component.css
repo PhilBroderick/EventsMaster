@@ -6,3 +6,14 @@
 #ticketTotal {
   margin: 20px;
 }
+
+.seat-selection {
+  display: inline;
+  margin: 3px;
+}
+
+.seat-container {
+  display: flex;
+  justify-content: space-between;
+  width: 3%;
+}

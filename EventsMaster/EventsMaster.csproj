@@ -53,6 +53,7 @@
     <None Remove="ClientApp\src\app\events\new-event.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
     <None Remove="ClientApp\src\app\register\register.component.ts" />
+    <None Remove="ClientApp\src\app\shared\models\seat.model.ts" />
     <None Remove="ClientApp\src\app\shared\models\userTickets-model.ts" />
   </ItemGroup>
 
@@ -73,6 +74,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\events\new-event.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\register\register.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shared\models\seat.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\models\userTickets-model.ts" />
   </ItemGroup>
 
