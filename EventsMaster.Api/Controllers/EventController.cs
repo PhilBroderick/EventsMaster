@@ -96,6 +96,7 @@ namespace EventsMaster.Api.Controllers
                 {
                     var categoryToUpper = CategoryToUpper(category);
                     singleEvent.TotalTicketsSold = CalculateTotalTicketsSold(singleEvent);
+                    UpdateAvailableSeats(singleEvent);
                     var updateEvent = await DocumentDBRepository<Event>.GetSingleItemAsync(d => d.Id == id && d.Category == categoryToUpper);
                     if (updateEvent == null)
                         return NotFound();
@@ -192,6 +193,12 @@ namespace EventsMaster.Api.Controllers
         private string CategoryToUpper(string lowerCategory)
         {
             return lowerCategory.First().ToString().ToUpper() + lowerCategory.Substring(1);
+        }
+
+        private void UpdateAvailableSeats(Event singleEvent)
+        {
+            var seatIds = new List<int>(singleEvent.SeatsBooked.Select(x => x.SeatId));
+            singleEvent.SeatsAvailable.RemoveAll(s => seatIds.Contains(s.SeatId));
         }
     }
 }
