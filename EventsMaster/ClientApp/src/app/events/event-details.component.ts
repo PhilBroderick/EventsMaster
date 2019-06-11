@@ -22,7 +22,7 @@ export class EventDetailsComponent {
   ticketsAvailable = false;
   lowTicketsLeft = false;
   ticketsToReserve = 0;
-  seatsToBook = [];
+  seatsToBook: Seat[];
 
   constructor(private route: ActivatedRoute, private eventService: EventService, private loginService: LoginService, private router: Router) { }
 
@@ -78,11 +78,15 @@ export class EventDetailsComponent {
       this.router.navigate(['/login']);
       return;
     } else {
-      this.event.attendees.push(this.loginService.currentUserId);
-      this.event.userTickets.push(new UserTickets(this.loginService.currentUserId, this.ticketsToReserve));
+      if (!this.event.attendees.includes(this.loginService.currentUserId)) {
+        this.event.attendees.push(this.loginService.currentUserId);
+      }
+      this.event.userTickets.push(new UserTickets(this.loginService.currentUserId, this.seatsToBook.length));
+      this.event.seatsBooked = this.event.seatsBooked.concat(this.seatsToBook);
       this.eventService.updateEvent(this.event).subscribe(event => {
         this.event = event;
         $('.error-container p').text("Tickets successfully booked - you will receive an email shortly with the details");
+        this.router.navigate(['/']);
       })
     }
   }
@@ -109,6 +113,5 @@ export class EventDetailsComponent {
       }
     })
     this.seatsToBook = seatArr;
-    console.log(this.seatsToBook);
   }
 }
