@@ -38,9 +38,34 @@ body {
 .event-element {
   background-color: #c7ced8;
   border-radius: 7px;
+  border: 1px solid #c7ced8;
+  transition: box-shadow 200ms linear;
 }
 
+  .event-element:hover {
+    box-shadow: 0 0 5px #cecece;
+  }
+
 .event-image {
-  height: 50px;
-  width: 50px;
+  height: 300px;
+  width: 100%;
+  transition: color 0.3s linear;
+}
+
+.event-image:hover {
+  cursor: pointer
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.name {
+  display: inline;
+  margin: 5px 5px;
+}
+
+.description {
+  margin: 3px 7px;
 }
