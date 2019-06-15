@@ -2,11 +2,13 @@
   <ul class="events">
     <li *ngFor="let event of events" [class.selected]="event === selectedEvent">
       <div class="event-element">
-        <img (click)="showPreview(event)" class="event-image" src="{{event.imageUrl}}"/>
-        <div class="name">{{event.name}}</div>
+        <img (click)="showPreview(event)" class="event-image" src="{{event.imageUrl}}" />
         <div class="description">{{event.description}}</div>
-        <button *ngIf="currentUserIsOwner(event)" class="edit-button" (click)="editEvent(event)">Edit</button>
-        <button *ngIf="currentUserIsOwner(event)" class="delete-button" (click)="deleteEvent(event)">Delete</button>
+        <h2 class="name">{{event.name}}</h2>
+        <div class="buttonContainer">
+          <button *ngIf="currentUserIsOwner(event)" class="edit-button" (click)="editEvent(event)">Edit</button>
+          <button *ngIf="currentUserIsOwner(event)" class="delete-button" (click)="deleteEvent(event)">Delete</button>
+        </div>
       </div>
     </li>
   </ul>
